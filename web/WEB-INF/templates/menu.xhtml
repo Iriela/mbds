@@ -4,12 +4,28 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <div class="logo">
-        <h:graphicImage  
-   name = "/img/logo.png"/>
+        <h:graphicImage name = "/img/logo.png"/>
     </div>
     <ul>
         <li><h:link outcome="/index" value="Accueil"/></li>  
         <li><h:link outcome="/list" value="Liste"/></li>
         <li><h:link outcome="/test" value="Tests"/></li>
+        <li><h:link outcome="/history" value="Historiques"/></li>
     </ul>
+    <h:form class="login_form">
+      <div class="login_form_group">
+      <h:outputLabel value="Identifiant" for="login"/>
+      <h:inputText id="login" value=""/>
+      </div>
+      <div class="login_form_group">
+      <h:outputLabel value="Mot de passe" for="pass"/>
+      <h:inputText id="pass" value=""/>
+      </div>
+      <h:commandButton value="Se connecter" action="index" class="button"/>
+    </h:form>
+    <h:form class="login_form">
+      <h:commandButton value="Se deconnecter" action="index" class="button"/>
+    </h:form>
+    
+    
 </ui:composition>

@@ -27,11 +27,16 @@
 
 #left li {
     list-style: none;
+    margin-bottom: 5px;
 }
 
 #left li::before {
   content: "• ";
   color: #036fab;
+}
+
+#left ul {
+    margin: 30px 0;
 }
 
 #right {
@@ -49,7 +54,7 @@
 
 .left_content {
     min-height: 300px;
-    padding: 10px;
+    padding-left: 50px;
     margin-left: 300px;
 }
 
@@ -86,7 +91,35 @@
 h1 {
     color: #036fab;
     font-size: 15px;
-    margin-left: 20px;
 }
 
+.button {
+    background-color: #036fab;
+    padding: 10px 15px;
+    color: white;
+    letter-spacing: 1px;
+    border: 0;
+    cursor: pointer;
+}
 
+.login_form {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #036fab;
+    padding: 20px 10px;
+}
+.login_form_group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login_form_group input {
+    margin: 10px 0;
+    width: 100%;
+    height: 25px;
+}
