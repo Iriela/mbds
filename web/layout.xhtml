@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/default_template.xhtml">
+
+            <ui:define name="top">
+                TP MBDS
+            </ui:define>
+
+            <ui:define name="content">
+                <h1 class="title">LAYOUT</h1>
+                <div class="content_page">
+                  <h:form>
+                    <h:commandButton value="Initialisation" action="index" class="button"/>
+                  </h:form>
+                  <div class="list">
+                    <div class="list_box">
+                        <h3>Title (Owner of List)</h3>
+                        <p>Description</p>
+                        <span>20 Mots</span>
+                        <h:form class="list_box_btn">
+                          <h:commandButton value="Modifier" action="index" class="button"/>
+                          <h:commandButton value="Supprimer" action="index" class="button danger"/>
+                        </h:form>
+                    </div>
+                    <div class="list_box">
+                        <h3>Title (Not owner)</h3>
+                        <p>Description</p>
+                        <span>20 Mots</span>
+                        <h:form class="list_box_btn">
+                          <h:commandButton value="Copier" action="index" class="button"/>
+                          <h:commandButton value="Tester" action="index" class="button"/>
+                          <h:commandButton value="Favoris" action="index" class="button"/>
+                        </h:form>
+                    </div>
+                    <div class="list_box">
+                        <h3>Title</h3>
+                        <p>Abusus enim multitudine hominum, quam tranquillis in rebus diutius rexit, ex agrestibus habitaculis urbes construxit multis opibus firmas et viribus, quarum ad praesens pleraeque licet Graecis nominibus appellentur, quae isdem ad arbitrium inposita sunt conditoris, primigenia tamen nomina non amittunt, quae eis Assyria lingua institutores veteres indiderunt.</p>
+                        <span>20 Mots</span>
+                        <h:form class="list_box_btn">
+                          <h:commandButton value="Copier" action="index" class="button"/>
+                          <h:commandButton value="Tester" action="index" class="button"/>
+                          <h:commandButton value="Favoris" action="index" class="button"/>
+                        </h:form>
+                    </div>
+                    <div class="list_box">
+                        <h3>Title</h3>
+                        <p>Description</p>
+                        <span>20 Mots</span>
+                        <h:form class="list_box_btn">
+                          <h:commandButton value="Copier" action="index" class="button"/>
+                          <h:commandButton value="Tester" action="index" class="button"/>
+                          <h:commandButton value="Favoris" action="index" class="button"/>
+                        </h:form>
+                    </div>
+                  </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
