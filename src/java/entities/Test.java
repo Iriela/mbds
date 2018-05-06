@@ -52,9 +52,9 @@ public class Test implements Serializable {
     @Column(name = "CREATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
-    @Basic(optional = false)
     @Column(name = "MODIFICATIONDATE")
-    private Boolean modificationdate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modificationdate;
 
     public Test() {
     }
@@ -63,12 +63,11 @@ public class Test implements Serializable {
         this.idtest = idtest;
     }
 
-    public Test(Long idtest, long iduser, long idlist, Date creationdate, Boolean modificationdate) {
+    public Test(Long idtest, long iduser, long idlist, Date creationdate) {
         this.idtest = idtest;
         this.iduser = iduser;
         this.idlist = idlist;
         this.creationdate = creationdate;
-        this.modificationdate = modificationdate;
     }
 
     public Long getIdtest() {
@@ -111,11 +110,11 @@ public class Test implements Serializable {
         this.creationdate = creationdate;
     }
 
-    public Boolean getModificationdate() {
+    public Date getModificationdate() {
         return modificationdate;
     }
 
-    public void setModificationdate(Boolean modificationdate) {
+    public void setModificationdate(Date modificationdate) {
         this.modificationdate = modificationdate;
     }
 
