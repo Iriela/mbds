@@ -7,7 +7,7 @@ package services.session;
 
 import entities.Test;
 import entities.Users;
-import java.util.List;
+import entities.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,18 +19,12 @@ import javax.persistence.Query;
  * @author iriel
  */
 @Stateless
-public class ListManager {
-
-    public static entities.List update(entities.List list) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class ListThemeManager {
     
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
         
-    public List<entities.List> getUserList(Users user){
-        Query query = em.createNamedQuery("List.findByIduser");
-        query.setParameter("iduser", user);
-        return query.getResultList();
+    public entities.List getList(long idList) {  
+      return em.find(entities.List.class, idList);  
     }
 }

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:metadata>  
+   <f:viewParam name="idList" value="#{detailListMbean.idList}"  
+                required="true"/>  
+   <f:viewAction action="#{detailListMbean.loadList}"/>
+</f:metadata>
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/default_template.xhtml">
+
+            <ui:define name="top">
+                TP MBDS
+            </ui:define>
+
+            <ui:define name="content">
+                <h1 class="title">HOME > LIST > UPDATE</h1>
+                <div class="content_page">
+                    <f:view>
+
+
+                        <h:form>
+                            <h1><h:outputText value="Create/Edit"/></h1>
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Idlist:" for="idlist" />
+                                <p:inputText id="idlist" value="#{detailListMbean.list.idlist}" title="Idlist" required="true" requiredMessage="The Idlist field is required."/>
+                                <p:outputLabel value="Title:" for="title" />
+                                <p:inputText id="title" value="#{detailListMbean.list.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                                <p:outputLabel value="Description:" for="description" />
+                                <p:inputText id="description" value="#{detailListMbean.list.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                                <p:outputLabel value="Creationdate:" for="creationdate" />
+                                <p:inputText id="creationdate" value="#{detailListMbean.list.creationdate}" title="Creationdate" required="true" requiredMessage="The Creationdate field is required.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </p:inputText>
+                                <p:outputLabel value="Modificationdate:" for="modificationdate" />
+                                <p:inputText id="modificationdate" value="#{detailListMbean.list.modificationdate}" title="Modificationdate" required="true" requiredMessage="The Modificationdate field is required.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </p:inputText>
+                                <p:outputLabel value="Keyword:" for="keyword" />
+                                <p:inputText id="keyword" value="#{detailListMbean.list.keyword}" title="Keyword" />
+                                
+                            </p:panelGrid>
+                        </h:form>
+                        <h:commandButton id="update" class="button" value="Enregistrer" action="#{detailListMbean.update}"/>
+                        
+                    </f:view>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -104,6 +104,7 @@ h3 {
     letter-spacing: 1px;
     border: 0;
     cursor: pointer;
+    margin: 10px 0;
 }
 
 .danger:hover{
