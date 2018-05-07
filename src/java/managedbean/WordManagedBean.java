@@ -56,7 +56,7 @@ public class WordManagedBean implements Serializable {
         newword.setFrench("language");
         newword.setEnglish("langage");
         newword.setIduser(1);
-        newword.setKeyword(Boolean.TRUE);
+        newword.setKeyword("key");
         newword.setListid("1");
         newword.setModificationdate(new Date());
         wordmanager.update(newword);
@@ -74,7 +74,7 @@ public class WordManagedBean implements Serializable {
                 newword.setEnglish(splitLine[2]);
                 newword.setIduser(Integer.parseInt(splitLine[3]));
                 newword.setListid(splitLine[4]);
-                newword.setKeyword(Boolean.TRUE);
+                newword.setKeyword("key");
                 newword.setModificationdate(new Date());
                 wordmanager.update(newword);
                 System.out.println(line);
