@@ -17,9 +17,13 @@ import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.Part;
@@ -36,6 +40,7 @@ public class WordManagedBean implements Serializable {
     private List<Word> listword;
     private Part fileuploaded;
     private Scanner fileContent;
+    private String idinsert;
 
     @EJB
     private WordManager wordmanager;
@@ -48,6 +53,25 @@ public class WordManagedBean implements Serializable {
             return wordmanager.getWords();
         }
         return listword;
+    }
+    
+    public Word insertnewWord(){
+        System.out.println("idword"+getIdinsert());
+        FacesContext context=FacesContext.getCurrentInstance();
+        ExternalContext externalcontext = context.getExternalContext();
+        Map usersessionmap = externalcontext.getSessionMap();
+        UserManagedBean usermanagedbean=(UserManagedBean)usersessionmap.get("userManagedBean");
+        System.out.println("created: "+usermanagedbean.getLoggeduser().getCreationdate());
+        Word newword = new Word(1l);
+        newword.setCreationdate(new Date());
+        newword.setFrench("language");
+        newword.setEnglish("langage");
+        newword.setIduser(1);
+        newword.setKeyword("key");
+        newword.setListid("1");
+        newword.setModificationdate(new Date());
+        //return wordmanager.update(newword);
+        return null;
     }
 
     public void insertWord() {
@@ -97,5 +121,19 @@ public class WordManagedBean implements Serializable {
 
     public void setFileuploaded(Part fileuploaded) {
         this.fileuploaded = fileuploaded;
+    }
+
+    /**
+     * @return the idinsert
+     */
+    public String getIdinsert() {
+        return idinsert;
+    }
+
+    /**
+     * @param idinsert the idinsert to set
+     */
+    public void setIdinsert(String idinsert) {
+        this.idinsert = idinsert;
     }
 }

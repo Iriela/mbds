@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByLogin", query = "SELECT u FROM Users u WHERE u.login = :login")
     , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
     , @NamedQuery(name = "Users.findByCreationdate", query = "SELECT u FROM Users u WHERE u.creationdate = :creationdate")
-    , @NamedQuery(name = "Users.findByModificationdate", query = "SELECT u FROM Users u WHERE u.modificationdate = :modificationdate")})
+    , @NamedQuery(name = "Users.findByModificationdate", query = "SELECT u FROM Users u WHERE u.modificationdate = :modificationdate")
+    , @NamedQuery(name = "Users.connect", query = "SELECT u FROM Users u WHERE u.login = :login and u.password = :password")})
 public class Users implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduser")
