@@ -157,7 +157,12 @@ h3 {
     margin: 15px 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-around;   
+}
+
+.list_box_btn .button {
+    color: white!important;
+    font-weight: normal;
 }
 
 .form-group {
