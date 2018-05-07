@@ -3,22 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/services/session/ListManager.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/index.xhtml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/word.xhtml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/entities/Word.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/list.xhtml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/entities/Users.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/services/session/WordManager.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/test.xhtml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/managedbean/TestManagedBean.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/entities/Test.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/managedbean/WordManagedBean.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/src/java/entities/List.java</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/web/WEB-INF/templates/menu.xhtml</file>
-            <file>file:/C:/Users/User/Documents/Tsito/GRIN/mbds/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Kiady/Documents/mbds/web/listhistory.xhtml</file>
+            <file>file:/C:/Users/Kiady/Documents/mbds/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

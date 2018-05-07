@@ -158,3 +158,17 @@ h3 {
     flex-direction: row;
     justify-content: space-around;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group .button{
+    width: 120px;
+    margin: 20px 0;
+}
+
+.input-upload {
+    margin-top: 20px;
+}
