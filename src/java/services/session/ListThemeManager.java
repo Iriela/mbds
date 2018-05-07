@@ -6,7 +6,9 @@
 package services.session;
 
 import entities.Test;
-import java.util.List;
+import entities.Users;
+import entities.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,12 +19,12 @@ import javax.persistence.Query;
  * @author iriel
  */
 @Stateless
-public class TestManager {
+public class ListThemeManager {
+    
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
         
-    public List<Test> getTests(){
-        Query query = em.createNamedQuery("Test.findAll");
-        return query.getResultList();
+    public entities.List getList(long idList) {  
+      return em.find(entities.List.class, idList);  
     }
-}   
+}

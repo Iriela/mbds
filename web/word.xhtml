@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -17,69 +18,67 @@
                 <h1 class="title">HOME > WORDS</h1>
                 <div class="content_page">
                     <f:view>
-
-
                         <h:form>
-                            <h2><h:outputText value="Liste"/></h2>
-                            <h:dataTable value="#{wordManagedBean.listWord}" var="item">
-                                <h:column>
+                            <h1><h:outputText value="Liste des mots existant"/></h1>
+                            <p:dataTable value="#{wordManagedBean.listWord}" var="item">
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Idword"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idword}"/>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="French"/>
                                     </f:facet>
                                     <h:outputText value="#{item.french}"/>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="English"/>
                                     </f:facet>
                                     <h:outputText value="#{item.english}"/>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Listid"/>
                                     </f:facet>
                                     <h:outputText value="#{item.listid}"/>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Iduser"/>
                                     </f:facet>
                                     <h:outputText value="#{item.iduser}"/>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Creationdate"/>
                                     </f:facet>
                                     <h:outputText value="#{item.creationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Modificationdate"/>
                                     </f:facet>
                                     <h:outputText value="#{item.modificationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
-                                </h:column>
-                                <h:column>
+                                </p:column>
+                                <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Keyword"/>
                                     </f:facet>
                                     <h:outputText value="#{item.keyword}"/>
-                                </h:column>
-                            </h:dataTable>
+                                </p:column>
+                            </p:dataTable>
                         </h:form>
                     </f:view>
-                    <h:form id="form" enctype="multipart/form-data">
-                        <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}"/>
-                        <h:commandButton value="Upload" action="#{wordManagedBean.upload}" class="button"/>
+                    <h:form id="form" enctype="multipart/form-data" class="form-group">
+                        <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}" class="input-upload"/>
+                        <h:commandButton value="Telecharger" action="#{wordManagedBean.upload}" class="button"/>
                     </h:form>
                     <f:view>
 

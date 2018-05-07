@@ -61,8 +61,15 @@
                                     <f:facet name="header">
                                         <h:outputText value="Historique"/>
                                     </f:facet>
-                                    <h:link outcome="listhistory?idlist=#{item.idlist}" value="Voir"/>
+                                    <h:link outcome="testalluserresult?idlist=#{item.idlist}" value="Voir"/>
                                 </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                       <h:outputText value="Action"/>
+                                    </f:facet>
+                                    <h:link outcome="updatelist?idList=#{item.idlist}" 
+                                            value="Details"/>
+                                 </p:column>
                             </p:dataTable>
                         </h:form>
                     </f:view>

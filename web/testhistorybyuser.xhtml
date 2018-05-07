@@ -23,21 +23,15 @@
                             <p:dataTable value="#{testManagedBean.userTestsHistoric}" var="item">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idtest"/>
-                                    </f:facet>
-                                    <h:link outcome="testhistory?idtest=#{item.idtest}" value="#{item.idtest}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
                                         <h:outputText value="Title"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idlist.title}"/>
+                                    <h:outputText value="#{item.idtest.idlist.title}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Description"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idlist.description}"/>
+                                    <h:outputText value="#{item.idtest.idlist.description}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
@@ -53,6 +47,13 @@
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
                                 </p:column>
+                                <!-- // todo find solution for show list -->
+                                <!--<p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Resultat d'autres utilisateur"/>
+                                    </f:facet>
+                                    <h:link outcome="testalluserresult?idlist=#{item.idtest.idlist.idlist}" value="Voir"/>
+                                </p:column>-->
                             </p:dataTable>
                         </h:form>
                     </f:view>

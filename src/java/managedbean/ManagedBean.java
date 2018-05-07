@@ -24,9 +24,8 @@ import services.session.TestManager;
 @ViewScoped
 public class ManagedBean implements Serializable{
 
-    private List<entities.Test> listTestByUser;
     private List<entities.List> list;
-    private List<entities.Test> listTestHistoric;
+    private List<entities.Testresult> listTestHistoric;
     private List<entities.Test> listTest;
     
     @EJB
@@ -43,15 +42,7 @@ public class ManagedBean implements Serializable{
      */
     public ManagedBean() {
     }
-    
-    // Used to get all test done by user
-    public List<entities.Test> getListTestByUser(){
-        if(listTestByUser == null){
-            listTestByUser = testManager.getUserTests(new Users(1l));
-        }
-        return listTestByUser;
-    }
-    
+        
     // Get all theme created by the user
     public List<entities.List> getTestThemeList(){
         if(list == null){
@@ -61,11 +52,8 @@ public class ManagedBean implements Serializable{
     }
     
     // Get all test done by the user
-    public List<entities.Test> getUserTestsHistoric(){
-        if(listTestHistoric == null){
-            listTestHistoric = historicManager.getUserTests(new Users(1l));
-        }
-        return listTestHistoric;
+    public List<entities.Testresult> getUserTestsHistoric(){
+        return historicManager.getUserTests(new Users(1l));
     }
     
     public List<entities.Test> getTests(){

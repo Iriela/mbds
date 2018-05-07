@@ -31,6 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Testresult.findAll", query = "SELECT t FROM Testresult t")
     , @NamedQuery(name = "Testresult.findByIdtestresult", query = "SELECT t FROM Testresult t WHERE t.idtestresult = :idtestresult")
     , @NamedQuery(name = "Testresult.findByScore", query = "SELECT t FROM Testresult t WHERE t.score = :score")
+    , @NamedQuery(name = "Testresult.findByIduser", query = "SELECT t FROM Testresult t WHERE t.iduser = :iduser")
+    , @NamedQuery(name = "Testresult.findByIdlist", query = "SELECT t FROM Testresult t JOIN Test ts ON ts.idtest = t.idtest where ts.idlist = :idlist")
     , @NamedQuery(name = "Testresult.findByCreationdate", query = "SELECT t FROM Testresult t WHERE t.creationdate = :creationdate")
     , @NamedQuery(name = "Testresult.findByModificationdate", query = "SELECT t FROM Testresult t WHERE t.modificationdate = :modificationdate")})
 public class Testresult implements Serializable {
