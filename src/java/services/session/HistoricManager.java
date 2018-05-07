@@ -20,14 +20,14 @@ public class HistoricManager {
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
     
-    public List<entities.Test> getTestHistoric(entities.List list){
-        Query query = em.createNamedQuery("Test.findByIdlist");
+    public List<entities.Testresult> getTestHistoric(entities.List list){
+        Query query = em.createNamedQuery("Testresult.findByIdlist");
         query.setParameter("idlist", list);
         return query.getResultList();
     }
     
-    public List<entities.Test> getUserTests(entities.Users user){
-        Query query = em.createNamedQuery("Test.findByIduser");
+    public List<entities.Testresult> getUserTests(entities.Users user){
+        Query query = em.createNamedQuery("Testresult.findByIduser");
         query.setParameter("iduser", user);
         return query.getResultList();
     }

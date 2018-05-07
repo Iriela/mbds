@@ -57,6 +57,12 @@
                                     </f:facet>
                                     <h:outputText value="#{item.idlist.description}"/>
                                 </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Resultat d'autres utilisateur"/>
+                                    </f:facet>
+                                    <h:link outcome="participate?idtest=#{item.idtest.idlist.idlist}" value="Voir"/>
+                                </p:column>
                             </p:dataTable>
                         </h:form>
                     </f:view>

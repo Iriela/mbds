@@ -6,6 +6,7 @@
 package managedbean;
 
 import entities.Test;
+import entities.Testresult;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,7 +26,7 @@ public class ListHistoryDetailsMBean implements Serializable{
     }
     
     private int idlist;  
-    private List<Test> testHistoric;  
+    private List<Testresult> testHistoric;  
           
     @EJB
     private HistoricManager historicManager;
@@ -38,7 +39,7 @@ public class ListHistoryDetailsMBean implements Serializable{
       this.idlist = idlist;
     }  
   
-    public List<entities.Test> getTestHistoric() {  
+    public List<entities.Testresult> getTestHistoric() {  
       return this.testHistoric;
     }  
           
