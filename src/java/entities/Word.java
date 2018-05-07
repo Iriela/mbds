@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Word.findByKeyword", query = "SELECT w FROM Word w WHERE w.keyword = :keyword")})
 public class Word implements Serializable {
 
+    @Column(name = "KEYWORD")
+    private String keyword;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -61,8 +64,6 @@ public class Word implements Serializable {
     @Column(name = "MODIFICATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificationdate;
-    @Column(name = "KEYWORD")
-    private Boolean keyword;
 
     public Word() {
     }
@@ -136,13 +137,6 @@ public class Word implements Serializable {
         this.modificationdate = modificationdate;
     }
 
-    public Boolean getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(Boolean keyword) {
-        this.keyword = keyword;
-    }
 
     @Override
     public int hashCode() {
@@ -167,6 +161,14 @@ public class Word implements Serializable {
     @Override
     public String toString() {
         return "entities.Word[ idword=" + idword + " ]";
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
     
 }
