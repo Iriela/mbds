@@ -50,7 +50,12 @@ public class DetailListMBean implements Serializable {
    */  
   public String update() {  
     list = ListManager.update(list);
-    return "List"; 
+    return "Update List"; 
+  }
+  
+  public String delete() {  
+    list = ListManager.delete(list);
+    return "Delete List";
   }
           
   public void loadList() {  
