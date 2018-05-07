@@ -37,7 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Test.findByIduser", query = "SELECT t FROM Test t WHERE t.iduser = :iduser")
     , @NamedQuery(name = "Test.findByIduserAndIdTest", query = "SELECT t FROM Test t WHERE t.iduser = :iduser and t.idtest = :idtest")
     , @NamedQuery(name = "Test.findByIdlist", query = "SELECT t FROM Test t WHERE t.idlist = :idlist")
-    , @NamedQuery(name = "Test.findByScore", query = "SELECT t FROM Test t WHERE t.score = :score")
     , @NamedQuery(name = "Test.findByCreationdate", query = "SELECT t FROM Test t WHERE t.creationdate = :creationdate")
     , @NamedQuery(name = "Test.findByModificationdate", query = "SELECT t FROM Test t WHERE t.modificationdate = :modificationdate")})
 public class Test implements Serializable {
@@ -50,8 +49,7 @@ public class Test implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDTEST")
     private Long idtest;
-    @Column(name = "SCORE")
-    private Short score;
+    
     @Basic(optional = false)
     @Column(name = "CREATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,14 +82,6 @@ public class Test implements Serializable {
 
     public void setIdtest(Long idtest) {
         this.idtest = idtest;
-    }
-
-    public Short getScore() {
-        return score;
-    }
-
-    public void setScore(Short score) {
-        this.score = score;
     }
 
     public Date getCreationdate() {
