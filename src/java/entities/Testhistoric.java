@@ -28,17 +28,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Testhistoric.findAll", query = "SELECT t FROM Testhistoric t")
     , @NamedQuery(name = "Testhistoric.findByIdtest", query = "SELECT t FROM Testhistoric t WHERE t.idtest = :idtest")
-    , @NamedQuery(name = "Testhistoric.findByIduser", query = "SELECT t FROM Testhistoric t WHERE t.iduser = :iduser")
-    , @NamedQuery(name = "Testhistoric.findByIduserAndIdTest", query = "SELECT t FROM Testhistoric t WHERE t.iduser = :iduser and t.idtest = :idtest")
     , @NamedQuery(name = "Testhistoric.findByTitle", query = "SELECT t FROM Testhistoric t WHERE t.title = :title")
+    , @NamedQuery(name = "Testhistoric.findByIduserAndIdTest", query = "SELECT t FROM Testhistoric t WHERE t.idtest = :idtest and t.iduser = :iduser")
     , @NamedQuery(name = "Testhistoric.findByDescription", query = "SELECT t FROM Testhistoric t WHERE t.description = :description")
     , @NamedQuery(name = "Testhistoric.findByScore", query = "SELECT t FROM Testhistoric t WHERE t.score = :score")
-    , @NamedQuery(name = "Testhistoric.findByCreationdate", query = "SELECT t FROM Testhistoric t WHERE t.creationdate = :creationdate")})
+    , @NamedQuery(name = "Testhistoric.findByCreationdate", query = "SELECT t FROM Testhistoric t WHERE t.creationdate = :creationdate")
+    , @NamedQuery(name = "Testhistoric.findByIduser", query = "SELECT t FROM Testhistoric t WHERE t.iduser = :iduser")
+    , @NamedQuery(name = "Testhistoric.findByIdlist", query = "SELECT t FROM Testhistoric t WHERE t.idlist = :idlist")
+    , @NamedQuery(name = "Testhistoric.findByUsername", query = "SELECT t FROM Testhistoric t WHERE t.username = :username")})
 public class Testhistoric implements Serializable {
-
-    @Basic(optional = false)
-    @Column(name = "IDUSER")
-    private long iduser;
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -57,6 +55,15 @@ public class Testhistoric implements Serializable {
     @Column(name = "CREATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
+    @Basic(optional = false)
+    @Column(name = "IDUSER")
+    private long iduser;
+    @Basic(optional = false)
+    @Column(name = "IDLIST")
+    private long idlist;
+    @Basic(optional = false)
+    @Column(name = "USERNAME")
+    private String username;
 
     public Testhistoric() {
     }
@@ -107,6 +114,22 @@ public class Testhistoric implements Serializable {
 
     public void setIduser(long iduser) {
         this.iduser = iduser;
+    }
+
+    public long getIdlist() {
+        return idlist;
+    }
+
+    public void setIdlist(long idlist) {
+        this.idlist = idlist;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
 }
