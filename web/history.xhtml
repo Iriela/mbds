@@ -20,7 +20,7 @@
                     <f:view>
                         <h:form>
                             <h1><h:outputText value="List"/></h1>
-                            <p:dataTable value="#{testManagedBean.testHistoric}" var="item">
+                            <p:dataTable value="#{testManagedBean.userTestsHistoric}" var="item">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Idtest"/>
@@ -31,13 +31,13 @@
                                     <f:facet name="header">
                                         <h:outputText value="Title"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.title}"/>
+                                    <h:outputText value="#{item.idlist.title}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Description"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.description}"/>
+                                    <h:outputText value="#{item.idlist.description}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">

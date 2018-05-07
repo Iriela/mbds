@@ -20,25 +20,25 @@ public class HistoricManager {
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
     
-    public List<entities.Testhistoric> getTestHistoric(int idList){
-        Query query = em.createNamedQuery("Testhistoric.findByIdlist");
-        query.setParameter("idlist", idList);
+    public List<entities.Test> getTestHistoric(entities.List list){
+        Query query = em.createNamedQuery("Test.findByIdlist");
+        query.setParameter("idlist", list);
         return query.getResultList();
     }
     
-    public List<entities.Testhistoric> getUserTests(int idUser){
-        Query query = em.createNamedQuery("Testhistoric.findByIduser");
-        query.setParameter("iduser", idUser);
+    public List<entities.Test> getUserTests(entities.Users user){
+        Query query = em.createNamedQuery("Test.findByIduser");
+        query.setParameter("iduser", user);
         return query.getResultList();
     }
     
-    public entities.Testhistoric getUserTests(int idUser, int idTest){
-        Query query = em.createNamedQuery("Testhistoric.findByIduserAndIdTest");
-        query.setParameter("iduser", idUser);
-        query.setParameter("idtest", idTest);
-        List<entities.Testhistoric> result = query.getResultList();
+    public entities.Test getUserTests(entities.Users user, entities.Test test){
+        Query query = em.createNamedQuery("Test.findByIduserAndIdTest");
+        query.setParameter("iduser", user);
+        query.setParameter("idtest", test);
+        List<entities.Test> result = query.getResultList();
         if(result == null || result.isEmpty()){
-            return new entities.Testhistoric();
+            return new entities.Test();
         }
         return result.get(0);
     }

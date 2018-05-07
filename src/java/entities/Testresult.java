@@ -6,10 +6,8 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,73 +15,67 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author iriel
  */
 @Entity
-@Table(name = "TEST")
+@Table(name = "TESTRESULT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Test.findAll", query = "SELECT t FROM Test t")
-    , @NamedQuery(name = "Test.findByIdtest", query = "SELECT t FROM Test t WHERE t.idtest = :idtest")
-    , @NamedQuery(name = "Test.findByIduser", query = "SELECT t FROM Test t WHERE t.iduser = :iduser")
-    , @NamedQuery(name = "Test.findByIduserAndIdTest", query = "SELECT t FROM Test t WHERE t.iduser = :iduser and t.idtest = :idtest")
-    , @NamedQuery(name = "Test.findByIdlist", query = "SELECT t FROM Test t WHERE t.idlist = :idlist")
-    , @NamedQuery(name = "Test.findByScore", query = "SELECT t FROM Test t WHERE t.score = :score")
-    , @NamedQuery(name = "Test.findByCreationdate", query = "SELECT t FROM Test t WHERE t.creationdate = :creationdate")
-    , @NamedQuery(name = "Test.findByModificationdate", query = "SELECT t FROM Test t WHERE t.modificationdate = :modificationdate")})
-public class Test implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtest")
-    private Collection<Testresult> testresultCollection;
+    @NamedQuery(name = "Testresult.findAll", query = "SELECT t FROM Testresult t")
+    , @NamedQuery(name = "Testresult.findByIdtestresult", query = "SELECT t FROM Testresult t WHERE t.idtestresult = :idtestresult")
+    , @NamedQuery(name = "Testresult.findByScore", query = "SELECT t FROM Testresult t WHERE t.score = :score")
+    , @NamedQuery(name = "Testresult.findByCreationdate", query = "SELECT t FROM Testresult t WHERE t.creationdate = :creationdate")
+    , @NamedQuery(name = "Testresult.findByModificationdate", query = "SELECT t FROM Testresult t WHERE t.modificationdate = :modificationdate")})
+public class Testresult implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "IDTEST")
-    private Long idtest;
+    @Column(name = "IDTESTRESULT")
+    private Long idtestresult;
     @Column(name = "SCORE")
     private Short score;
     @Basic(optional = false)
     @Column(name = "CREATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
+    @Basic(optional = false)
     @Column(name = "MODIFICATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificationdate;
-    @JoinColumn(name = "IDLIST", referencedColumnName = "IDLIST")
+    @JoinColumn(name = "IDTEST", referencedColumnName = "IDTEST")
     @ManyToOne(optional = false)
-    private List idlist;
+    private Test idtest;
     @JoinColumn(name = "IDUSER", referencedColumnName = "IDUSER")
     @ManyToOne(optional = false)
     private Users iduser;
 
-    public Test() {
+    public Testresult() {
     }
 
-    public Test(Long idtest) {
-        this.idtest = idtest;
+    public Testresult(Long idtestresult) {
+        this.idtestresult = idtestresult;
     }
 
-    public Test(Long idtest, Date creationdate) {
-        this.idtest = idtest;
+    public Testresult(Long idtestresult, Date creationdate, Date modificationdate) {
+        this.idtestresult = idtestresult;
         this.creationdate = creationdate;
+        this.modificationdate = modificationdate;
     }
 
-    public Long getIdtest() {
-        return idtest;
+    public Long getIdtestresult() {
+        return idtestresult;
     }
 
-    public void setIdtest(Long idtest) {
-        this.idtest = idtest;
+    public void setIdtestresult(Long idtestresult) {
+        this.idtestresult = idtestresult;
     }
 
     public Short getScore() {
@@ -110,12 +102,12 @@ public class Test implements Serializable {
         this.modificationdate = modificationdate;
     }
 
-    public List getIdlist() {
-        return idlist;
+    public Test getIdtest() {
+        return idtest;
     }
 
-    public void setIdlist(List idlist) {
-        this.idlist = idlist;
+    public void setIdtest(Test idtest) {
+        this.idtest = idtest;
     }
 
     public Users getIduser() {
@@ -129,18 +121,18 @@ public class Test implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idtest != null ? idtest.hashCode() : 0);
+        hash += (idtestresult != null ? idtestresult.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Test)) {
+        if (!(object instanceof Testresult)) {
             return false;
         }
-        Test other = (Test) object;
-        if ((this.idtest == null && other.idtest != null) || (this.idtest != null && !this.idtest.equals(other.idtest))) {
+        Testresult other = (Testresult) object;
+        if ((this.idtestresult == null && other.idtestresult != null) || (this.idtestresult != null && !this.idtestresult.equals(other.idtestresult))) {
             return false;
         }
         return true;
@@ -148,16 +140,7 @@ public class Test implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Test[ idtest=" + idtest + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Testresult> getTestresultCollection() {
-        return testresultCollection;
-    }
-
-    public void setTestresultCollection(Collection<Testresult> testresultCollection) {
-        this.testresultCollection = testresultCollection;
+        return "entities.Testresult[ idtestresult=" + idtestresult + " ]";
     }
     
 }

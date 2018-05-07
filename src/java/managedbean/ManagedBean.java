@@ -6,7 +6,7 @@
 package managedbean;
 
 import entities.Test;
-import entities.Testhistoric;
+import entities.Users;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -24,9 +24,10 @@ import services.session.TestManager;
 @ViewScoped
 public class ManagedBean implements Serializable{
 
-    private List<Test> listTestByUser;
+    private List<entities.Test> listTestByUser;
     private List<entities.List> list;
-    private List<entities.Testhistoric> listTestHistoric;
+    private List<entities.Test> listTestHistoric;
+    private List<entities.Test> listTest;
     
     @EJB
     private ListManager listManager;
@@ -43,28 +44,34 @@ public class ManagedBean implements Serializable{
     public ManagedBean() {
     }
     
+    // Used to get all test done by user
     public List<entities.Test> getListTestByUser(){
         if(listTestByUser == null){
-            return testManager.getUserTests(1);
+            listTestByUser = testManager.getUserTests(new Users(1l));
         }
         return listTestByUser;
     }
     
-    public List<entities.List> getListList(){
+    // Get all theme created by the user
+    public List<entities.List> getTestThemeList(){
         if(list == null){
-            return listManager.getUserList(1);
+            list = listManager.getUserList(new Users(1l));
         }
         return list;
     }
     
-    public List<entities.Testhistoric> getTestHistoric(){
+    // Get all test done by the user
+    public List<entities.Test> getUserTestsHistoric(){
         if(listTestHistoric == null){
-            return historicManager.getUserTests(1);
+            listTestHistoric = historicManager.getUserTests(new Users(1l));
         }
         return listTestHistoric;
     }
     
-    public entities.Testhistoric getTestHistoric(int idTest){
-        return historicManager.getUserTests(1,idTest);
+    public List<entities.Test> getTests(){
+        if(listTest == null){
+            listTest = testManager.getTests();
+        }
+        return listTest;
     }
 }

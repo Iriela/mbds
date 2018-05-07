@@ -6,17 +6,21 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,6 +38,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByCreationdate", query = "SELECT u FROM Users u WHERE u.creationdate = :creationdate")
     , @NamedQuery(name = "Users.findByModificationdate", query = "SELECT u FROM Users u WHERE u.modificationdate = :modificationdate")})
 public class Users implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduser")
+    private Collection<Testresult> testresultCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduser")
+    private Collection<Test> testCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduser")
+    private Collection<List> listCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -145,6 +158,33 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "entities.Users[ iduser=" + iduser + " ]";
+    }
+
+    @XmlTransient
+    public Collection<List> getListCollection() {
+        return listCollection;
+    }
+
+    public void setListCollection(Collection<List> listCollection) {
+        this.listCollection = listCollection;
+    }
+
+    @XmlTransient
+    public Collection<Test> getTestCollection() {
+        return testCollection;
+    }
+
+    public void setTestCollection(Collection<Test> testCollection) {
+        this.testCollection = testCollection;
+    }
+
+    @XmlTransient
+    public Collection<Testresult> getTestresultCollection() {
+        return testresultCollection;
+    }
+
+    public void setTestresultCollection(Collection<Testresult> testresultCollection) {
+        this.testresultCollection = testresultCollection;
     }
     
 }

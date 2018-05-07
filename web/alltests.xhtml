@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -15,55 +14,49 @@
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">HOME > LIST</h1>
+                <h1 class="title">HOME > TOUT LES TESTS</h1>
                 <div class="content_page">
                     <f:view>
 
 
                         <h:form>
                             <h1><h:outputText value="List"/></h1>
-                            <p:dataTable value="#{testManagedBean.testThemeList}" var="item">
-                                <p:column>
+                            <h:dataTable value="#{testManagedBean.tests}" var="item">
+                                <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idlist"/>
+                                        <h:outputText value="Idtest"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idlist}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Title"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.title}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Description"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.description}"/>
-                                </p:column>
-                                <p:column>
+                                    <h:outputText value="#{item.idtest}"/>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Creationdate"/>
                                     </f:facet>
                                     <h:outputText value="#{item.creationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
-                                </p:column>
-                                <p:column>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Modificationdate"/>
                                     </f:facet>
                                     <h:outputText value="#{item.modificationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
-                                </p:column>
-                                <p:column>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Historique"/>
+                                        <h:outputText value="Idlist"/>
                                     </f:facet>
-                                    <h:link outcome="listhistory?idlist=#{item.idlist}" value="Voir"/>
-                                </p:column>
-                            </p:dataTable>
+                                    <h:outputText value="#{item.idlist}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Iduser"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.iduser}"/>
+                                </h:column>
+                            </h:dataTable>
                         </h:form>
                     </f:view>
 

@@ -6,6 +6,7 @@
 package services.session;
 
 import entities.Test;
+import entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,9 +22,14 @@ public class TestManager {
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
     
-    public List<Test> getUserTests(int idUser) {
+    public List<Test> getUserTests(Users user) {
         Query query = em.createNamedQuery("Test.findByIduser");
-        query.setParameter("iduser", idUser);
+        query.setParameter("iduser", user);
         return query.getResultList();
     }
-}
+    
+    public List<Test> getTests(){
+        Query query = em.createNamedQuery("Test.findAll");
+        return query.getResultList();
+    }
+}   

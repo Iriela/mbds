@@ -19,7 +19,7 @@
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">HOME > TEST</h1>
+                <h1 class="title">HOME > LISTE HISTORIQUE</h1>
                 <div class="content_page">
                     <f:view>
                         <h:form>
@@ -29,19 +29,19 @@
                                     <f:facet name="header">
                                         <h:outputText value="Iduser"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.username}"/>
+                                    <h:outputText value="#{item.iduser.login}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Title"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.title}"/>
+                                    <h:outputText value="#{item.idlist.title}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Description"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.description}"/>
+                                    <h:outputText value="#{item.idlist.description}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">

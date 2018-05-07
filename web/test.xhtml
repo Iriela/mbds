@@ -23,25 +23,25 @@
                             <p:dataTable value="#{testManagedBean.listTestByUser}" var="item">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idtest"/>
+                                        <h:outputText value="Titre"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idtest}"/>
+                                    <h:outputText value="#{item.idlist.title}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Iduser"/>
+                                        <h:outputText value="Description"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.iduser}"/>
+                                    <h:outputText value="#{item.idlist.description}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idlist"/>
+                                        <h:outputText value="Créé par"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idlist}"/>
+                                    <h:outputText value="#{item.iduser.login}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Score"/>
+                                        <h:outputText value="Voir moyenne"/>
                                     </f:facet>
                                     <h:outputText value="#{item.score}"/>
                                 </p:column>

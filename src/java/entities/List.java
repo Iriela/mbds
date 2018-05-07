@@ -6,17 +6,23 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +42,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "List.findByKeyword", query = "SELECT l FROM List l WHERE l.keyword = :keyword")})
 public class List implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idlist")
+    private Collection<Test> testCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -48,9 +57,6 @@ public class List implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @Basic(optional = false)
-    @Column(name = "IDUSER")
-    private long iduser;
-    @Basic(optional = false)
     @Column(name = "CREATIONDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
@@ -60,6 +66,9 @@ public class List implements Serializable {
     private Date modificationdate;
     @Column(name = "KEYWORD")
     private String keyword;
+    @JoinColumn(name = "IDUSER", referencedColumnName = "IDUSER")
+    @ManyToOne(optional = false)
+    private Users iduser;
 
     public List() {
     }
@@ -68,11 +77,10 @@ public class List implements Serializable {
         this.idlist = idlist;
     }
 
-    public List(Long idlist, String title, String description, long iduser, Date creationdate, Date modificationdate) {
+    public List(Long idlist, String title, String description, Date creationdate, Date modificationdate) {
         this.idlist = idlist;
         this.title = title;
         this.description = description;
-        this.iduser = iduser;
         this.creationdate = creationdate;
         this.modificationdate = modificationdate;
     }
@@ -101,14 +109,6 @@ public class List implements Serializable {
         this.description = description;
     }
 
-    public long getIduser() {
-        return iduser;
-    }
-
-    public void setIduser(long iduser) {
-        this.iduser = iduser;
-    }
-
     public Date getCreationdate() {
         return creationdate;
     }
@@ -131,6 +131,14 @@ public class List implements Serializable {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public Users getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(Users iduser) {
+        this.iduser = iduser;
     }
 
     @Override
@@ -156,6 +164,15 @@ public class List implements Serializable {
     @Override
     public String toString() {
         return "entities.List[ idlist=" + idlist + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Test> getTestCollection() {
+        return testCollection;
+    }
+
+    public void setTestCollection(Collection<Test> testCollection) {
+        this.testCollection = testCollection;
     }
     
 }
