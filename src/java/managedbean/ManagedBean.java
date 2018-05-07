@@ -43,15 +43,7 @@ public class ManagedBean implements Serializable{
      */
     public ManagedBean() {
     }
-    
-    // Used to get all test done by user
-    public List<entities.Test> getListTestByUser(){
-        if(listTestByUser == null){
-            listTestByUser = testManager.getUserTests(new Users(1l));
-        }
-        return listTestByUser;
-    }
-    
+        
     // Get all theme created by the user
     public List<entities.List> getTestThemeList(){
         if(list == null){
