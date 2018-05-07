@@ -81,6 +81,20 @@
                         <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}"/>
                         <h:commandButton value="Upload" action="#{wordManagedBean.upload}" class="button"/>
                     </h:form>
+                    <f:view>
+
+
+                        
+                        <h:form>
+                            <h1><h:outputText value="Create/Edit"/></h1>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Idword:" for="idword" />
+                                <h:inputText value="#{wordManagedBean.idinsert}" />
+                            </h:panelGrid>
+                            
+                            <h:commandButton value="insertnewWord" action="#{wordManagedBean.insertnewWord}" class="button"/>
+                        </h:form>
+                    </f:view>
 
                 </div>
             </ui:define>

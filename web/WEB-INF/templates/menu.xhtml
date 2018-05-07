@@ -17,16 +17,16 @@
     <h:form class="login_form">
       <div class="login_form_group">
       <h:outputLabel value="Identifiant" for="login"/>
-      <h:inputText id="login" value=""/>
+      <h:inputText value="#{userManagedBean.login}"/>
       </div>
       <div class="login_form_group">
       <h:outputLabel value="Mot de passe" for="pass"/>
-      <h:inputText id="pass" value=""/>
+      <h:inputText value="#{userManagedBean.password}"/>
       </div>
-      <h:commandButton value="Se connecter" action="index" class="button"/>
+        <h:commandButton value="Se connecter" action="#{userManagedBean.connectuser}" class="button"/>
     </h:form>
     <h:form class="login_form">
-      <h:commandButton value="Se deconnecter" action="index" class="button"/>
+        <h:commandButton value="Se deconnecter" action="index" class="button"/>
     </h:form>
     
     
