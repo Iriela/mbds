@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -73,14 +74,26 @@
                                     </f:facet>
                                     <h:outputText value="#{item.keyword}"/>
                                 </p:column>
+                                <c:if test="#{userManagedBean.loggeduser!=null}">
+                                    <p:column>
+                                        <f:facet name="addToList">
+                                            <h:outputText value="Ajouter dans la liste"/>
+                                        </f:facet>
+                                        <h:selectOneMenu value="test">
+                                            <c:forEach items="#{userManagedBean.loggeduser.listCollection}" var="theme">
+                                                <f:selectItem itemValue="#{theme.title}" itemLabel="#{theme.title}" />
+                                            </c:forEach>
+                                        </h:selectOneMenu>
+                                    </p:column>
+                                </c:if>
                             </p:dataTable>
                         </h:form>
                     </f:view>
                     <h:form id="form" enctype="multipart/form-data" class="form-group">
                         <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}" class="input-upload"/>
-                        <h:commandButton value="Telecharger" action="#{wordManagedBean.upload}" class="button"/>
+                        <h:commandButton value="Uploader" action="#{wordManagedBean.upload}" class="button"/>
                     </h:form>
-
+                    
                 </div>
             </ui:define>
 

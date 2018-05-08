@@ -5,20 +5,13 @@
  */
 package managedbean;
 
+import Helper.SessionHelper;
 import entities.Word;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -36,15 +29,32 @@ public class WordManagedBean implements Serializable {
     private List<Word> listword;
     private Part fileuploaded;
     private Scanner fileContent;
+    private String idinsert;
+    private SessionHelper sessionhelper=new SessionHelper();
 
     @EJB
     private WordManager wordmanager;
 
     public WordManagedBean() {
+        
     }
 
     public List<Word> getListWord() {
         return wordmanager.getWords();
+    }
+    
+    public Word insertnewWord(){
+        System.out.println("created: "+sessionhelper.getUserManagedBean().getLoggeduser().getCreationdate());
+        Word newword = new Word(1l);
+        newword.setCreationdate(new Date());
+        newword.setFrench("language");
+        newword.setEnglish("langage");
+        newword.setIduser(1);
+        newword.setKeyword("key");
+        newword.setListid("1");
+        newword.setModificationdate(new Date());
+        //return wordmanager.update(newword);
+        return null;
     }
 
     public List<Word> getWordList(String idlist){
@@ -75,7 +85,7 @@ public class WordManagedBean implements Serializable {
                 newword.setEnglish(splitLine[2]);
                 newword.setIduser(Integer.parseInt(splitLine[3]));
                 newword.setListid(splitLine[4]);
-                newword.setKeyword("key");
+                newword.setKeyword(splitLine[5]);
                 newword.setModificationdate(new Date());
                 wordmanager.update(newword);
                 System.out.println(line);
@@ -98,5 +108,19 @@ public class WordManagedBean implements Serializable {
 
     public void setFileuploaded(Part fileuploaded) {
         this.fileuploaded = fileuploaded;
+    }
+
+    /**
+     * @return the idinsert
+     */
+    public String getIdinsert() {
+        return idinsert;
+    }
+
+    /**
+     * @param idinsert the idinsert to set
+     */
+    public void setIdinsert(String idinsert) {
+        this.idinsert = idinsert;
     }
 }

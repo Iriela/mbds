@@ -24,6 +24,10 @@ public class ListManager {
     public static entities.List update(entities.List list) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public static entities.List delete(entities.List list) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;

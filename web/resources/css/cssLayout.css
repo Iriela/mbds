@@ -104,7 +104,7 @@ h3 {
     letter-spacing: 1px;
     border: 0;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 10px 5px;
 }
 
 .danger:hover{
@@ -157,7 +157,12 @@ h3 {
     margin: 15px 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-around;   
+}
+
+.list_box_btn .button {
+    color: white!important;
+    font-weight: normal;
 }
 
 .form-group {
