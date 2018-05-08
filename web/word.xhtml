@@ -13,14 +13,23 @@
 
             <ui:define name="top">
                 TP MBDS
+                <h:form class="select-lang">
+                    <h:panelGrid columns = "2"> 
+                       <h:outputText value = "#{msg['lang']} :" />
+                       <h:selectOneMenu value = "#{lang.locale}" onchange = "submit()"
+                          valueChangeListener = "#{lang.localeChanged}">
+                          <f:selectItems value = "#{lang.countries}" /> 
+                       </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">HOME > WORDS</h1>
+                <h1 class="title">#{msg['home']} > #{msg['words']}</h1>
                 <div class="content_page">
                     <f:view>
                         <h:form>
-                            <h1><h:outputText value="Liste des mots existant"/></h1>
+                            <h1><h:outputText value="#{msg['titleWord']}"/></h1>
                             <p:dataTable value="#{wordManagedBean.listWord}" var="item">
                                 <p:column>
                                     <f:facet name="header">
@@ -91,7 +100,7 @@
                     </f:view>
                     <h:form id="form" enctype="multipart/form-data" class="form-group">
                         <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}" class="input-upload"/>
-                        <h:commandButton value="Uploader" action="#{wordManagedBean.upload}" class="button"/>
+                        <h:commandButton value="#{msg['uploadbtn']}" action="#{wordManagedBean.upload}" class="button"/>
                     </h:form>
                     
                 </div>
