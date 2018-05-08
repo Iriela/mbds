@@ -6,13 +6,15 @@
 package managedbean;
 
 import Helper.SessionHelper;
-import entities.Test;
-import entities.Users;
+import entities.Word;
+import services.session.WordManager;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -27,6 +29,9 @@ import services.session.TestManager;
 @Named(value = "testManagedBean")
 @ViewScoped
 public class ManagedBean implements Serializable{
+
+    @EJB
+    private WordManager wordManager;
 
     private List<entities.List> list;
     private List<entities.Testresult> listTestHistoric;
@@ -75,5 +80,30 @@ public class ManagedBean implements Serializable{
             listTest = testManager.getTests();
         }
         return listTest;
+    }
+    
+    public void initBdd(){
+        System.out.println("INITIALISATION");
+        
+        Word word1;
+        long id=1;
+        long idUser=1;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
+        word1 = new Word(id,"Ballon","Ball",idUser,date,date);
+        
+        List<Word> listWord = wordManager.getWords();
+        if(listWord.isEmpty()) {
+            System.out.println("WORD TABLE IS EMPTY");
+            //wordManager.update(word1);
+        }
+        else {
+            System.out.println("WORD IS NOT EMPTY");
+            //wordManager.deleteAllWords();
+            //wordManager.update(word1);
+        }
+        
+        
+        
     }
 }

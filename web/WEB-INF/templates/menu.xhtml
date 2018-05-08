@@ -10,32 +10,31 @@
     <div class="logo">
         <h:graphicImage name = "/img/logo.png"/>
     </div>
+    
     <ul>
-        <li><h:link outcome="/index" value="Accueil"/></li>  
-        <li><h:link outcome="/themebyuser" value="Mes themes"/></li>
-        <li><h:link outcome="/alltests" value="Tests"/></li>
-        <li><h:link outcome="/testhistorybyuser" value="Historiques de mes tests"/></li>
-        <li><h:link outcome="/word" value="Words"/></li>
-        <li><h:link outcome="/layout" value="Style guide"/></li>
+        <li><h:link outcome="/index" value="#{msg['home']}"/></li>  
+        <li><h:link outcome="/themebyuser" value="#{msg['theme']}"/></li>
+        <li><h:link outcome="/alltests" value="#{msg['test']}"/></li>
+        <li><h:link outcome="/testhistorybyuser" value="#{msg['hystory']}"/></li>
+        <li><h:link outcome="/word" value="#{msg['words']}"/></li>
+        <li class="sr-only"><h:link outcome="/layout" value="Style guide"/></li>
     </ul>
     <c:if test="#{userManagedBean.loggeduser == null}">
           <h:form class="login_form">
             <div class="login_form_group">
-                <h:outputLabel value="Identifiant" for="login"/>
+                <h:outputLabel value="#{msg['user']}" for="login"/>
                 <h:inputText value="#{userManagedBean.login}"/>
             </div>
             <div class="login_form_group">
-                <h:outputLabel value="Mot de passe" for="pass"/>
+                <h:outputLabel value="#{msg['pass']}" for="pass"/>
                 <h:inputText value="#{userManagedBean.password}"/>
             </div>
-            <h:commandButton value="Se connecter" action="#{userManagedBean.connectuser}" class="button"/>
+            <h:commandButton value="#{msg['login']}" action="#{userManagedBean.connectuser}" class="button"/>
         </h:form>
     </c:if>
-    <c:if test="#{userManagedBean.loggeduser!=null}">
-        <h:form class="login_form">
-            <h:commandButton value="Se deconnecter" action="#{userManagedBean.loggoutuser}" class="button"/>
-        </h:form>
-    </c:if>
+    <h:form class="login_form">
+        <h:commandButton value="#{msg['logout']}" action="#{userManagedBean.loggoutuser}" class="button"/>
+    </h:form>
     
     
 </ui:composition>

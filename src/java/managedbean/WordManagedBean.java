@@ -7,24 +7,12 @@ package managedbean;
 
 import Helper.SessionHelper;
 import entities.Word;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.Part;
@@ -55,10 +43,7 @@ public class WordManagedBean implements Serializable {
     }
 
     public List<Word> getListWord() {
-        if (listword == null) {
-            return wordmanager.getWords();
-        }
-        return listword;
+        return wordmanager.getWords();
     }
     
     public void insert(){
@@ -97,12 +82,12 @@ public class WordManagedBean implements Serializable {
         //return wordmanager.update(newword);
     }
 
-    public Word insertWord() {
-        System.out.println("test");
-        System.out.println("test");
-        System.out.println("test");
-        System.out.println("test");
-       /* Word newword = new Word(1l);
+    public List<Word> getWordList(String idlist){
+        return wordmanager.getWords(idlist);
+    }
+    
+    public void insertWord() {
+        Word newword = new Word(1l);
         newword.setCreationdate(new Date());
         newword.setFrench("language");
         newword.setEnglish("langage");

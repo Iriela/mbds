@@ -7,20 +7,28 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
-
         <ui:composition template="./WEB-INF/templates/default_template.xhtml">
 
             <ui:define name="top">
                 TP MBDS
+                <h:form class="select-lang">
+                    <h:panelGrid columns = "2"> 
+                       <h:outputText value = "#{msg['lang']} :" />
+                       <h:selectOneMenu value = "#{lang.locale}" onchange = "submit()"
+                          valueChangeListener = "#{lang.localeChanged}">
+                          <f:selectItems value = "#{lang.countries}" /> 
+                       </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">HOME</h1>
+                <h1 class="title">#{msg['home']}</h1>
                 <div class="content_page">
                   <h:form>
-                    <h:commandButton value="Initialisation" action="index" class="button"/>
+                    <h:commandButton id="update" class="button" value="#{msg['init']}" action="#{testManagedBean.initBdd}"/>
                   </h:form>
-                    <h3 class="title">Les Themes Existants</h3>
+                    <h3 class="title">#{msg['titleList']}</h3>
                     <div class="list">
                         
                         <c:if test="#{userManagedBean.loggeduser!=null}">
@@ -28,30 +36,25 @@
                                 <div class="list_box">
                                     <h3>#{option.title}</h3>
                                     <p>#{option.description}</p>
-                                    <span>20 Mots</span>
+                                    <span>20 #{msg['count']}</span>
                                     <h:form class="list_box_btn">
                                         <h:link class="button" outcome="updatelist?idList=#{option.idlist}" 
-                                                value="Details"/>
-                                        <h:commandButton value="Supprimer" action="index" class="button danger"/>
+                                                value="#{msg['viewbtn']}"/>
+                                        <h:commandButton value="#{msg['deletebtn']}" action="index" class="button danger"/>
+                                    </h:form>
+                                    <h:form class="list_box_btn sr-only">
+                                        <h:commandButton value="Copier" action="index" class="button"/>
+                                        <h:commandButton value="Tester" action="index" class="button"/>
+                                        <h:commandButton value="Favoris" action="index" class="button"/>
                                     </h:form>
                                 </div>
                             </c:forEach>
                         </c:if>
                         
 
-                        <div class="list_box">
-                            <h3>Title (User is not the owner)</h3>
-                            <p>Description</p>
-                            <span>20 Mots</span>
-                            <h:form class="list_box_btn">
-                              <h:commandButton value="Copier" action="index" class="button"/>
-                              <h:commandButton value="Tester" action="index" class="button"/>
-                              <h:commandButton value="Favoris" action="index" class="button"/>
-                            </h:form>
-                        </div>
                         
                      </div>
-                  
+                    
                 </div>
             </ui:define>
 
