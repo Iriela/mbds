@@ -24,12 +24,12 @@ public class UserManager {
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
 
-    public List<Users> connect(String login, String password) {
+    public Users connect(String login, String password) {
 
         Query query = em.createNamedQuery("Users.connect");
         query.setParameter("login", login);
         query.setParameter("password", password);
-        return query.getResultList();
+        return (Users)query.getResultList().get(query.getFirstResult());
     }
     
     public Users update(Users user){

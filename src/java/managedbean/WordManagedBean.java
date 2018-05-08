@@ -5,6 +5,7 @@
  */
 package managedbean;
 
+import Helper.SessionHelper;
 import entities.Word;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,11 +42,13 @@ public class WordManagedBean implements Serializable {
     private Part fileuploaded;
     private Scanner fileContent;
     private String idinsert;
+    private SessionHelper sessionhelper=new SessionHelper();
 
     @EJB
     private WordManager wordmanager;
 
     public WordManagedBean() {
+        
     }
 
     public List<Word> getListWord() {
@@ -56,12 +59,7 @@ public class WordManagedBean implements Serializable {
     }
     
     public Word insertnewWord(){
-        System.out.println("idword"+getIdinsert());
-        FacesContext context=FacesContext.getCurrentInstance();
-        ExternalContext externalcontext = context.getExternalContext();
-        Map usersessionmap = externalcontext.getSessionMap();
-        UserManagedBean usermanagedbean=(UserManagedBean)usersessionmap.get("userManagedBean");
-        System.out.println("created: "+usermanagedbean.getLoggeduser().getCreationdate());
+        System.out.println("created: "+sessionhelper.getUserManagedBean().getLoggeduser().getCreationdate());
         Word newword = new Word(1l);
         newword.setCreationdate(new Date());
         newword.setFrench("language");
@@ -98,7 +96,7 @@ public class WordManagedBean implements Serializable {
                 newword.setEnglish(splitLine[2]);
                 newword.setIduser(Integer.parseInt(splitLine[3]));
                 newword.setListid(splitLine[4]);
-                newword.setKeyword("key");
+                newword.setKeyword(splitLine[5]);
                 newword.setModificationdate(new Date());
                 wordmanager.update(newword);
                 System.out.println(line);

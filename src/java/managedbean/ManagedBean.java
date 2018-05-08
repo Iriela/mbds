@@ -5,11 +5,15 @@
  */
 package managedbean;
 
+import Helper.SessionHelper;
 import entities.Test;
 import entities.Users;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import services.session.HistoricManager;
@@ -27,6 +31,7 @@ public class ManagedBean implements Serializable{
     private List<entities.List> list;
     private List<entities.Testresult> listTestHistoric;
     private List<entities.Test> listTest;
+    private SessionHelper sessionhelper=new SessionHelper();
     
     @EJB
     private ListManager listManager;
@@ -45,15 +50,24 @@ public class ManagedBean implements Serializable{
         
     // Get all theme created by the user
     public List<entities.List> getTestThemeList(){
-        if(list == null){
-            list = listManager.getUserList(new Users(1l));
+        try {
+            if (list == null) {
+                list = listManager.getUserList(sessionhelper.getUserManagedBean().getLoggeduser());
+            }
+            return list;
+        } catch (Exception exc) {
         }
-        return list;
+        return null;
     }
     
     // Get all test done by the user
     public List<entities.Testresult> getUserTestsHistoric(){
-        return historicManager.getUserTests(new Users(1l));
+        try {
+            return historicManager.getUserTests(sessionhelper.getUserManagedBean().getLoggeduser());
+        } catch (Exception exc) {
+
+        }
+        return null;
     }
     
     public List<entities.Test> getTests(){

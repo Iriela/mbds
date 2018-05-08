@@ -23,18 +23,20 @@
                     <h3 class="title">Les Themes Existants</h3>
                     <div class="list">
                         
-                        <c:forEach items="#{testManagedBean.testThemeList}" var="option">
-                            <div class="list_box">
-                                <h3>#{option.title}</h3>
-                                <p>#{option.description}</p>
-                                <span>20 Mots</span>
-                                <h:form class="list_box_btn">
-                                  <h:link class="button" outcome="updatelist?idList=#{option.idlist}" 
-                                            value="Details"/>
-                                  <h:commandButton value="Supprimer" action="index" class="button danger"/>
-                                </h:form>
-                            </div>
-                          </c:forEach> 
+                        <c:if test="#{userManagedBean.loggeduser!=null}">
+                            <c:forEach items="#{testManagedBean.testThemeList}" var="option">
+                                <div class="list_box">
+                                    <h3>#{option.title}</h3>
+                                    <p>#{option.description}</p>
+                                    <span>20 Mots</span>
+                                    <h:form class="list_box_btn">
+                                        <h:link class="button" outcome="updatelist?idList=#{option.idlist}" 
+                                                value="Details"/>
+                                        <h:commandButton value="Supprimer" action="index" class="button danger"/>
+                                    </h:form>
+                                </div>
+                            </c:forEach>
+                        </c:if>
                         
 
                         <div class="list_box">

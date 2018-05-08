@@ -26,7 +26,6 @@ import services.session.UserManager;
 @SessionScoped
 public class UserManagedBean implements Serializable {
 
-    private List<Users> user;
     private Users loggeduser;
     private String login;
     private String password;
@@ -43,21 +42,19 @@ public class UserManagedBean implements Serializable {
     public Users connectuser() {
         System.out.println("login: " + getLogin());
         System.out.println("password: " + getPassword());
-        user = usermanager.connect(login, password);
-        if (user.size() == 0) {
-            return null;
-        } else if (user.size() > 1) {
-            return null;
-        } else {
+        if(usermanager.connect(login, password)!=null){
+            setLoggeduser(usermanager.connect(login, password));
             FacesContext context = FacesContext.getCurrentInstance();
             ExternalContext externalcontext = context.getExternalContext();
             Map usersessionmap = externalcontext.getSessionMap();
             usersessionmap.put("userManagedBean", this);
-            setLoggeduser(user.get(0));
-            System.out.println("created: " + user.get(0).getCreationdate());
-            return user.get(0);
+            return getLoggeduser();
         }
+        return null;
 
+    }
+    public void loggoutuser(){
+        this.loggeduser=null;
     }
 
     /**
