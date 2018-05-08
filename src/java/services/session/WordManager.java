@@ -30,6 +30,17 @@ public class WordManager {
         return query.getResultList();
     }
     
+    public List<Word> getWords(String idlist){
+        Query query = em.createNamedQuery("Word.extendedFindListid");
+        String p1 = "%|"+ idlist + "|%";
+        String p2 = idlist + "|%";
+        String p3 = "%|" + idlist;
+        query.setParameter("p1", p1);
+        query.setParameter("p2", p2);
+        query.setParameter("p3", p3);
+        return query.getResultList();
+    }
+    
     public Word update(Word word) {
         return em.merge(word);
     }

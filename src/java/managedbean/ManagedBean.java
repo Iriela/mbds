@@ -6,14 +6,9 @@
 package managedbean;
 
 import Helper.SessionHelper;
-import entities.Test;
-import entities.Users;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import services.session.HistoricManager;

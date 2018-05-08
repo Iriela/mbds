@@ -5,15 +5,12 @@
  */
 package managedbean;
 
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import entities.Users;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import services.session.UserManager;
