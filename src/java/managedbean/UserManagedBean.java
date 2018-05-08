@@ -29,6 +29,7 @@ public class UserManagedBean implements Serializable {
     private Users loggeduser;
     private String login;
     private String password;
+    private Long iduserlogged;
 
     /**
      * Creates a new instance of UserManagedBean
@@ -48,6 +49,7 @@ public class UserManagedBean implements Serializable {
             ExternalContext externalcontext = context.getExternalContext();
             Map usersessionmap = externalcontext.getSessionMap();
             usersessionmap.put("userManagedBean", this);
+            this.setIduserlogged(this.loggeduser.getIduser());
             return getLoggeduser();
         }
         return null;
@@ -97,6 +99,20 @@ public class UserManagedBean implements Serializable {
      */
     public void setLoggeduser(Users loggeduser) {
         this.loggeduser = loggeduser;
+    }
+
+    /**
+     * @return the iduserlogged
+     */
+    public Long getIduserlogged() {
+        return iduserlogged;
+    }
+
+    /**
+     * @param iduserlogged the iduserlogged to set
+     */
+    public void setIduserlogged(Long iduserlogged) {
+        this.iduserlogged = iduserlogged;
     }
 
 }

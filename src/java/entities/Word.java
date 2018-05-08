@@ -44,7 +44,7 @@ public class Word implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "IDWORD")
-    private Long idword;
+    public Long idword;
     @Basic(optional = false)
     @Column(name = "FRENCH")
     private String french;

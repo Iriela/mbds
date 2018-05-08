@@ -43,11 +43,14 @@ public class WordManagedBean implements Serializable {
     private Scanner fileContent;
     private String idinsert;
     private SessionHelper sessionhelper=new SessionHelper();
+    private int ismodifmode=0;
+    private Word word;
 
     @EJB
     private WordManager wordmanager;
 
     public WordManagedBean() {
+        
         
     }
 
@@ -58,7 +61,30 @@ public class WordManagedBean implements Serializable {
         return listword;
     }
     
-    public Word insertnewWord(){
+    public void insert(){
+        System.out.print("testinsert");
+    }
+    
+    public void changemodifmode(int idmodif){
+        //Long idlong=new Long(wordmodif.getIduser());
+        this.setIsmodifmode(idmodif);
+    }
+    
+    public void showmodif(String key, Word wordmodif){
+        System.out.println("key: "+key);
+        wordmodif.setKeyword(key);
+        System.out.println("key: "+wordmodif.getEnglish());
+        wordmanager.update(wordmodif);
+    }
+    
+    public void modif(Word word){
+        System.out.println("French: "+word.getFrench());
+        System.out.println("English: "+word.getEnglish());
+        System.out.println("Keywords: "+word.getKeyword());
+    }
+    
+    public void updateWord(Long Idword, String French, String English, Long Listid, Long Iduser, Date Creationdate, Date Modificationdate, String Keyword){
+        /*System.out.println("Idword: "+Idword);
         System.out.println("created: "+sessionhelper.getUserManagedBean().getLoggeduser().getCreationdate());
         Word newword = new Word(1l);
         newword.setCreationdate(new Date());
@@ -67,13 +93,16 @@ public class WordManagedBean implements Serializable {
         newword.setIduser(1);
         newword.setKeyword("key");
         newword.setListid("1");
-        newword.setModificationdate(new Date());
+        newword.setModificationdate(new Date());*/
         //return wordmanager.update(newword);
-        return null;
     }
 
-    public void insertWord() {
-        Word newword = new Word(1l);
+    public Word insertWord() {
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+       /* Word newword = new Word(1l);
         newword.setCreationdate(new Date());
         newword.setFrench("language");
         newword.setEnglish("langage");
@@ -81,7 +110,8 @@ public class WordManagedBean implements Serializable {
         newword.setKeyword("key");
         newword.setListid("1");
         newword.setModificationdate(new Date());
-        wordmanager.update(newword);
+        wordmanager.update(newword);*/
+        return null;
     }
 
     public void upload() {
@@ -98,7 +128,7 @@ public class WordManagedBean implements Serializable {
                 newword.setListid(splitLine[4]);
                 newword.setKeyword(splitLine[5]);
                 newword.setModificationdate(new Date());
-                wordmanager.update(newword);
+                wordmanager.persist(newword);
                 System.out.println(line);
             }
             /*Path folder = Paths.get("C:\\Users\\User\\Documents\\Tsito");
@@ -133,5 +163,33 @@ public class WordManagedBean implements Serializable {
      */
     public void setIdinsert(String idinsert) {
         this.idinsert = idinsert;
+    }
+
+    /**
+     * @return the ismodifmode
+     */
+    public int getIsmodifmode() {
+        return ismodifmode;
+    }
+
+    /**
+     * @param ismodifmode the ismodifmode to set
+     */
+    public void setIsmodifmode(int ismodifmode) {
+        this.ismodifmode = ismodifmode;
+    }
+
+    /**
+     * @return the word
+     */
+    public Word getWord() {
+        return word;
+    }
+
+    /**
+     * @param word the word to set
+     */
+    public void setWord(Word word) {
+        this.word = word;
     }
 }
