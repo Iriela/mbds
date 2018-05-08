@@ -44,12 +44,13 @@ public class WordManagedBean implements Serializable {
     }
 
     public List<Word> getListWord() {
-        if (listword == null) {
-            return wordmanager.getWords();
-        }
-        return listword;
+        return wordmanager.getWords();
     }
 
+    public List<Word> getWordList(String idlist){
+        return wordmanager.getWords(idlist);
+    }
+    
     public void insertWord() {
         Word newword = new Word(1l);
         newword.setCreationdate(new Date());

@@ -5,7 +5,6 @@
  */
 package managedbean;
 
-import entities.Test;
 import entities.Users;
 import java.io.Serializable;
 import java.util.List;
