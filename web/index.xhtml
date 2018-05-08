@@ -7,7 +7,6 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
-
         <ui:composition template="./WEB-INF/templates/default_template.xhtml">
 
             <ui:define name="top">
@@ -27,7 +26,7 @@
                 <h1 class="title">#{msg['home']}</h1>
                 <div class="content_page">
                   <h:form>
-                    <h:commandButton value="#{msg['init']}" action="index" class="button"/>
+                    <h:commandButton id="update" class="button" value="#{msg['init']}" action="#{testManagedBean.initBdd}"/>
                   </h:form>
                     <h3 class="title">#{msg['titleList']}</h3>
                     <div class="list">
