@@ -5,13 +5,20 @@
  */
 package managedbean;
 
+import Helper.Constants;
+import Helper.TestHelper;
+import entities.Test;
+import entities.Testresult;
+import entities.Users;
 import entities.Word;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.model.ArrayDataModel;
+import javax.faces.model.DataModel;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import services.session.TestManager;
+import services.session.HistoricManager;
 import services.session.WordManager;
 
 /**
@@ -25,14 +32,40 @@ public class ParticipationMBean implements Serializable{
     public ParticipationMBean() {
     }
     
+    private boolean showCorrection;
+    private boolean isFR_EN;
     private int idtest;
-    private List<Word> testHistoric; 
-    
-    @EJB
-    private TestManager testManager;
+    private DataModel<Word> testHistoric; 
+    private String[] userInput;    
+    private int score;
     
     @EJB
     private WordManager wordManager;
+    
+    @EJB
+    private HistoricManager historyManager;
+    
+    public void submit(){
+        int userScore = TestHelper.CalculateScore(userInput,Constants._FR, testHistoric);
+        System.out.println("score "+userScore);
+        
+        this.setScore(userScore);
+        /*Testresult testresult = new Testresult();
+        testresult.setIdtest(new Test(new Integer(idtest).longValue()));
+        testresult.setIduser(new Users(1l));
+        historyManager.addUserTestResult(testresult);*/
+    }
+    
+    public void submit1(){
+        int userScore = TestHelper.CalculateScore(userInput,Constants._EN, testHistoric);
+        System.out.println("score "+userScore);
+        
+        this.setScore(userScore);
+        /*Testresult testresult = new Testresult();
+        testresult.setIdtest(new Test(new Integer(idtest).longValue()));
+        testresult.setIduser(new Users(1l));
+        historyManager.addUserTestResult(testresult);*/
+    }
     
     public int getIdTest() {  
       return this.idtest;
@@ -42,11 +75,41 @@ public class ParticipationMBean implements Serializable{
       this.idtest = idtest;
     }
     
-    public List<Word> getWordList(){
-        return testHistoric;
+    public void changeShowStatus(){
+        showCorrection = !showCorrection;
     }
     
-    public void loadWords() {  
-        this.testHistoric = wordManager.getWords(String.valueOf(idtest));  
+    public boolean getShowCorrection(){
+        return showCorrection;
+    }
+    
+    public DataModel<Word> getWordList(){
+        return testHistoric;
+    }
+
+    public String[] getUserInput() {
+        return userInput;
+    }
+
+    public void setUserInput(String[] userInput) {
+        this.userInput = userInput;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    
+    
+    public void loadWords(boolean isFREN) {
+        List<Word> wordList = wordManager.getWords(String.valueOf(idtest));
+        Word[] array = wordList.toArray(new Word[wordList.size()]);
+        this.testHistoric = new ArrayDataModel<>(array);
+        this.userInput = new String[wordList.size()];
+        this.isFR_EN = isFREN;
     }
 }

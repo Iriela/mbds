@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Word.findByFrench", query = "SELECT w FROM Word w WHERE w.french = :french")
     , @NamedQuery(name = "Word.findByEnglish", query = "SELECT w FROM Word w WHERE w.english = :english")
     , @NamedQuery(name = "Word.findByListid", query = "SELECT w FROM Word w WHERE w.listid = :listid")
-    , @NamedQuery(name = "Word.extendedFindListid", query = "SELECT w FROM Word w WHERE w.listid LIKE :p1 OR w.listid LIKE :p2 OR w.listid LIKE :p3")
+    , @NamedQuery(name = "Word.extendedFindListid", query = "SELECT w FROM Word w WHERE w.listid LIKE :p1 OR w.listid LIKE :p2 OR w.listid LIKE :p3 OR w.listid = :p4")
     , @NamedQuery(name = "Word.findByIduser", query = "SELECT w FROM Word w WHERE w.iduser = :iduser")
     , @NamedQuery(name = "Word.findByCreationdate", query = "SELECT w FROM Word w WHERE w.creationdate = :creationdate")
     , @NamedQuery(name = "Word.findByModificationdate", query = "SELECT w FROM Word w WHERE w.modificationdate = :modificationdate")
@@ -76,10 +78,20 @@ public class Word implements Serializable {
         this.idword = idword;
     }
 
-    public Word(Long idword, String french, String english, long iduser, Date creationdate, Date modificationdate) {
+    public Word(Long idword, String french, String english,String listid,long iduser, Date creationdate, Date modificationdate) {
         this.idword = idword;
         this.french = french;
         this.english = english;
+        this.listid = listid;
+        this.iduser = iduser;
+        this.creationdate = creationdate;
+        this.modificationdate = modificationdate;
+    }
+    
+    public Word( String french, String english,String listid,long iduser, Date creationdate, Date modificationdate) {
+        this.french = french;
+        this.english = english;
+        this.listid = listid;
         this.iduser = iduser;
         this.creationdate = creationdate;
         this.modificationdate = modificationdate;
@@ -88,7 +100,7 @@ public class Word implements Serializable {
     public Long getIdword() {
         return idword;
     }
-
+    
     public void setIdword(Long idword) {
         this.idword = idword;
     }

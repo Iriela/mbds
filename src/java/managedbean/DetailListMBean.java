@@ -49,7 +49,7 @@ public class DetailListMBean implements Serializable {
    * en paramètres, et renvoie vers la page qui affiche la liste des clients. 
    */  
   public String update() {  
-    list = ListManager.update(list);
+    //list = ListManager.update(list);
     return "Update List"; 
   }
   

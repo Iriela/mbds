@@ -8,7 +8,7 @@
     
     <f:metadata>  
         <f:viewParam name="idtest" value="#{participationMBean.idTest}" required="true"/>  
-        <f:viewAction action="#{participationMBean.loadWords(true)}"/>  
+        <f:viewAction action="#{participationMBean.loadWords(false)}"/>  
     </f:metadata>
     <body>
 
@@ -34,13 +34,13 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="French"/>
+                                        <h:outputText value="English"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.french}"/>
+                                    <h:outputText value="#{item.english}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="English"/>
+                                        <h:outputText value="French"/>
                                     </f:facet>
                                     <h:inputText value="#{participationMBean.userInput[index]}"/>
                                 </p:column>
@@ -49,7 +49,7 @@
                                         <h:outputText value="Correction"/>
                                     </f:facet>
                                     <h:panelGroup rendered="#{participationMBean.showCorrection}">
-                                        <h:outputText value = "#{item.english}"/>
+                                        <h:outputText value = "#{item.french}"/>
                                     </h:panelGroup>
                                     
                                 </p:column>
@@ -60,8 +60,8 @@
                                 <f:ajax render = "refreshTable" />
                             </h:commandButton>
                             
-                            <h:button value="Test EN-FR" outcome="participatetestfr?idtest=#{participationMBean.idTest}" />
-                            <h:commandButton value="Valider" action="#{participationMBean.submit}"/>
+                            <h:button value="Test FR-EN" outcome="participatetest?idtest=#{participationMBean.idTest}" />
+                            <h:commandButton value="Valider" action="#{participationMBean.submit}" />
                             
                         </h:form>
                     </f:view>
