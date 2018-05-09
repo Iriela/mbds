@@ -30,6 +30,11 @@ public class WordManager {
         return query.getResultList();
     }
     
+    public void deleteAllWords() {
+        Query query = em.createNamedQuery("Word.deleteAll");
+        query.executeUpdate();
+    }
+    
     public List<Word> getWords(String idlist){
         Query query = em.createNamedQuery("Word.extendedFindListid");
         String p1 = "%|"+ idlist + "|%";

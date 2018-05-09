@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <body>
 
@@ -13,66 +13,121 @@
 
             <ui:define name="top">
                 TP MBDS
+                <h:form class="select-lang">
+                    <h:panelGrid columns = "2"> 
+                       <h:outputText value = "#{msg['lang']} :" />
+                       <h:selectOneMenu value = "#{lang.locale}" onchange = "submit()"
+                          valueChangeListener = "#{lang.localeChanged}">
+                          <f:selectItems value = "#{lang.countries}" /> 
+                       </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">HOME > WORDS</h1>
+                <h1 class="title">#{msg['home']} > #{msg['words']}</h1>
                 <div class="content_page">
                     <f:view>
                         <h:form>
-                            <h1><h:outputText value="Liste des mots existant"/></h1>
+                            <h1><h:outputText value="#{msg['titleWord']}"/></h1>
                             <p:dataTable value="#{wordManagedBean.listWord}" var="item">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Idword"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idword}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputIdword}" value="#{item.idword}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.idword}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="French"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.french}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputFrench}" value="#{item.french}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.french}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="English"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.english}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputEnglish}" value="#{item.english}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.english}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Listid"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.listid}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputListId}" value="#{item.listid}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.listid}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Iduser"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.iduser}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputIduser}" value="#{item.iduser}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.iduser}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Creationdate"/>
                                     </f:facet>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                    <h:inputText immediate="true" binding="#{inputCreationdate}" value="#{item.creationdate}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
                                     <h:outputText value="#{item.creationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Modificationdate"/>
                                     </f:facet>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                    <h:inputText immediate="true" binding="#{inputModificationdate}" value="#{item.modificationdate}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
                                     <h:outputText value="#{item.modificationdate}">
                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                     </h:outputText>
+                                    </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Keyword"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.keyword}"/>
+                                    
+                                    <c:set var="key" value="#{item.keyword}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                    <h:inputText immediate="true" binding="#{input1}" value="#{key}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                    <h:outputText value="#{key}"/>
+                                    </h:panelGroup>
                                 </p:column>
                                 <c:if test="#{userManagedBean.loggeduser!=null}">
                                     <p:column>
@@ -85,13 +140,42 @@
                                             </c:forEach>
                                         </h:selectOneMenu>
                                     </p:column>
+                                    <p:column>
+                                        <f:facet name="Modifier">
+                                            <h:outputText value="Modifier"/>
+                                        </f:facet>
+                                        <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
+                                            <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                                <h:commandButton immediate="true" value="Valider" action="#{wordManagedBean.showmodif(input1.value,item)}" class="button success"/>
+                                                <h:commandButton value="Annuler" action="#{wordManagedBean.changemodifmode(0)}" class="button danger"/>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                                <h:commandButton value="Modifier" action="#{wordManagedBean.changemodifmode(item.idword)}" class="button"/>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{item.iduser!=userManagedBean.loggeduser.iduser}">
+                                            <h:outputText value="pas applicable"/>
+                                        </h:panelGroup>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="supprimer">
+                                            <h:outputText value="Supprimer"/>
+                                        </f:facet>
+                                        <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
+                                            <h:commandButton value="Supprimer" action="#{wordManagedBean.upload}" class="button"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{item.iduser!=userManagedBean.loggeduser.iduser}">
+                                            <h:outputText value="pas applicable"/>
+                                        </h:panelGroup>
+                                    </p:column>
                                 </c:if>
                             </p:dataTable>
+                            
                         </h:form>
                     </f:view>
                     <h:form id="form" enctype="multipart/form-data" class="form-group">
                         <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}" class="input-upload"/>
-                        <h:commandButton value="Uploader" action="#{wordManagedBean.upload}" class="button"/>
+                        <h:commandButton value="#{msg['uploadbtn']}" action="#{wordManagedBean.upload}" class="button"/>
                     </h:form>
                     
                 </div>

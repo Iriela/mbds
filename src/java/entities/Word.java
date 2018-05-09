@@ -37,7 +37,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Word.findByIduser", query = "SELECT w FROM Word w WHERE w.iduser = :iduser")
     , @NamedQuery(name = "Word.findByCreationdate", query = "SELECT w FROM Word w WHERE w.creationdate = :creationdate")
     , @NamedQuery(name = "Word.findByModificationdate", query = "SELECT w FROM Word w WHERE w.modificationdate = :modificationdate")
-    , @NamedQuery(name = "Word.findByKeyword", query = "SELECT w FROM Word w WHERE w.keyword = :keyword")})
+    , @NamedQuery(name = "Word.findByKeyword", query = "SELECT w FROM Word w WHERE w.keyword = :keyword") 
+    , @NamedQuery(name = "Word.deleteAll", query = "DELETE FROM Word")
+})
+    
 public class Word implements Serializable {
 
     @Column(name = "KEYWORD")
@@ -48,7 +51,7 @@ public class Word implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "IDWORD")
-    private Long idword;
+    public Long idword;
     @Basic(optional = false)
     @Column(name = "FRENCH")
     private String french;
