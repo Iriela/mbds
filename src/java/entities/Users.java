@@ -39,7 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
     , @NamedQuery(name = "Users.findByCreationdate", query = "SELECT u FROM Users u WHERE u.creationdate = :creationdate")
     , @NamedQuery(name = "Users.findByModificationdate", query = "SELECT u FROM Users u WHERE u.modificationdate = :modificationdate")
-    , @NamedQuery(name = "Users.connect", query = "SELECT u FROM Users u WHERE u.login = :login and u.password = :password")})
+    , @NamedQuery(name = "Users.connect", query = "SELECT u FROM Users u WHERE u.login = :login and u.password = :password")
+    , @NamedQuery(name = "Users.deleteAll", query = "DELETE FROM Users")
+})
 public class Users implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "iduser")
@@ -79,6 +81,11 @@ public class Users implements Serializable {
 
     public Users(Long iduser) {
         this.iduser = iduser;
+    }
+    
+    public Users(Long iduser,boolean isadmin) {
+        this.iduser = iduser;
+        this.isadmin = isadmin;
     }
 
     public Users(Long iduser, Boolean isadmin, String login, String password, Date creationdate, Date modificationdate) {

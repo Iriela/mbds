@@ -33,6 +33,7 @@ public class WordManager {
     public void deleteAllWords() {
         Query query = em.createNamedQuery("Word.deleteAll");
         query.executeUpdate();
+        em.flush();
     }
     
     public List<Word> getWords(String idlist){

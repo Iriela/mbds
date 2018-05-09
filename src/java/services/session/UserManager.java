@@ -9,6 +9,7 @@ import entities.Users;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import javax.persistence.Query;
  * @author User
  */
 @Stateful
+@LocalBean
 public class UserManager {
     
     @PersistenceContext(unitName = "ProjectPU")
@@ -34,5 +36,11 @@ public class UserManager {
     
     public Users update(Users user){
         return em.merge(user);
+    }
+    
+    public void deleteAllUsers() {
+        Query query = em.createNamedQuery("Users.deleteAll");
+        query.executeUpdate();
+        em.flush();
     }
 }

@@ -19,12 +19,13 @@ import javax.persistence.Query;
  * @author iriel
  */
 @Stateless
+@LocalBean
 public class ListManager {
     @PersistenceContext(unitName = "ProjectPU")
     private EntityManager em;
     
-     public static entities.List update(entities.List list) { 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
+     public entities.List update(entities.List list) { 
+        return em.merge(list);
     }
 
     public static entities.List delete(entities.List list) {
@@ -36,11 +37,16 @@ public class ListManager {
     public List<entities.List> getUserList(Users user){
         Query query = em.createNamedQuery("List.findByIduser");
         query.setParameter("iduser", user);
-        return query.getResultList();
+        List<entities.List> list = query.getResultList();
+        list.forEach((item) -> {
+            System.out.println(item.getTitle());
+        });
+        return list;
     }
     
     public void deleteAllList() {
-        Query query = em.createNamedQuery("Word.deleteAll");
+        Query query = em.createNamedQuery("List.deleteAll");
         query.executeUpdate();
+        em.flush();
     }
 }
