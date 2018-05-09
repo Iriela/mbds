@@ -41,7 +41,6 @@ public class Testresult implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "IDTESTRESULT")
     private Long idtestresult;
