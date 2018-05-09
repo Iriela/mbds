@@ -38,6 +38,7 @@ public class ManagedBean implements Serializable{
     private List<entities.Test> listTest;
     private SessionHelper sessionhelper=new SessionHelper();
     
+    
     @EJB
     private ListManager listManager;
     
@@ -104,6 +105,48 @@ public class ManagedBean implements Serializable{
         }
         
         
+    }
+    
+    public boolean getTableEmpty() {
+        List<Word> listWord = wordManager.getWords();
+        return listWord.isEmpty();
+    }
+    
+    public void dropInit() {
         
+        System.out.println("INITIALISATION");
+        
+        Word word1;
+        long id=1;
+        long idUser=1;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
+        word1 = new Word(id,"Ballon","Ball",idUser,date,date);
+        
+        wordManager.deleteAllWords();
+        wordManager.update(word1);
+        
+    }
+    
+    public void init() {
+        
+        System.out.println("INITIALISATION");
+        
+        Word word1;
+        long id=1;
+        long idUser=1;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
+        word1 = new Word(id,"Ballon","Ball",idUser,date,date);
+        
+        wordManager.update(word1);
+        
+    }
+    
+    
+     
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }
