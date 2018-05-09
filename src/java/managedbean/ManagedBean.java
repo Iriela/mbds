@@ -197,19 +197,40 @@ public class ManagedBean implements Serializable {
         wordsEN[49] = "ice";
         
         for(Long i=0L;i<wordsEN.length;i++) {
-            Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"1",1L,date,date);
-            wordManager.update(word);
+            if(i.intValue()<=15) {
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"4",1L,date,date);
+                wordManager.update(word);
+            }
+            else if(i.intValue()>15 && i.intValue()<=30) {
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"3",1L,date,date);
+                wordManager.update(word);
+            }
+            else if(i.intValue()>30 && i.intValue()<=35) {
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"2",1L,date,date);
+                wordManager.update(word);
+            }
+            else {
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"1|2",1L,date,date);
+                wordManager.update(word);
+            }
         }
+        
+        //entities.List list1 = new entities.List(1L,"Travail","Ensemble des mots concernant le travail en generale",date,date);
+        
+        //listManager.update(list1);
         
     }
     
     public void dropInit() {
+        System.out.println("getDropInit");
        wordManager.deleteAllWords();
+       //listManager.deleteAllList();
        insertDB(); 
     }
     
     public void init() {
         wordManager.deleteAllWords();
+        //listManager.deleteAllList();
         insertDB();
     }
     

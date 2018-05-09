@@ -45,8 +45,21 @@ public class ParticipationMBean implements Serializable{
     @EJB
     private HistoricManager historyManager;
     
-    public void submit(boolean isFREN){
-        int userScore = TestHelper.CalculateScore(userInput,isFREN ? Constants._FR : Constants._EN, testHistoric);
+    public void submit(){
+        int userScore = TestHelper.CalculateScore(userInput,Constants._FR, testHistoric);
+        System.out.println("score "+userScore);
+        
+        this.setScore(userScore);
+        /*Testresult testresult = new Testresult();
+        testresult.setIdtest(new Test(new Integer(idtest).longValue()));
+        testresult.setIduser(new Users(1l));
+        historyManager.addUserTestResult(testresult);*/
+    }
+    
+    public void submit1(){
+        int userScore = TestHelper.CalculateScore(userInput,Constants._EN, testHistoric);
+        System.out.println("score "+userScore);
+        
         this.setScore(userScore);
         /*Testresult testresult = new Testresult();
         testresult.setIdtest(new Test(new Integer(idtest).longValue()));

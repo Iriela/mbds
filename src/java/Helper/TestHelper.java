@@ -17,6 +17,7 @@ public class TestHelper {
         int score = 0;
         int i=0;
         for(Word word : words){
+            System.out.println("FR: "+word.getFrench()+" EN:"+userInput[i]);
             if(lang.equalsIgnoreCase(Constants._EN)){
                 if(!word.getFrench().equalsIgnoreCase(userInput[i])) continue;
                 score++;

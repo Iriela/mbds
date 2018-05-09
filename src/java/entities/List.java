@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "List.findByIduser", query = "SELECT l FROM List l WHERE l.iduser = :iduser")
     , @NamedQuery(name = "List.findByCreationdate", query = "SELECT l FROM List l WHERE l.creationdate = :creationdate")
     , @NamedQuery(name = "List.findByModificationdate", query = "SELECT l FROM List l WHERE l.modificationdate = :modificationdate")
-    , @NamedQuery(name = "List.findByKeyword", query = "SELECT l FROM List l WHERE l.keyword = :keyword")})
+    , @NamedQuery(name = "List.findByKeyword", query = "SELECT l FROM List l WHERE l.keyword = :keyword")
+    , @NamedQuery(name = "List.deleteAll", query = "DELETE FROM List")
+})
 public class List implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idlist")

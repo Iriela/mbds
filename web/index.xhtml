@@ -29,7 +29,7 @@
                 <div class="content_page">
                     <c:set var = "isempty" scope = "session" value = "#{testManagedBean.tableEmpty}"/>
       
-                    <c:if test="${isempty}">
+                    <c:if test="${!isempty}">
                       <h:form>           
                         <p:growl id="message" showDetail="true" />
 
@@ -44,7 +44,7 @@
                       </h:form>
          
                     </c:if>
-                    <c:if test="${!isempty}">
+                    <c:if test="${isempty}">
                         <h:form>
                             <h:commandButton id="update" class="button" value="#{msg['init']}" action="#{testManagedBean.init}"/>
                           </h:form>

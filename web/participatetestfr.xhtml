@@ -23,6 +23,7 @@
                 <div class="content_page">
                     <f:view>
                         <h:form id="formId">
+                            <h:outputText id="showResult" value = "#{participationMBean.score != 0 ? participationMBean.score : '' }" />
                             <h1><h:outputText value="List"/></h1>
                             <p:dataTable value="#{participationMBean.wordList}" var="item" id="refreshTable" rowIndexVar="index">
                                 <p:column>
@@ -58,9 +59,9 @@
                             <h:commandButton value = "Correction" action="#{participationMBean.changeShowStatus}">
                                 <f:ajax render = "refreshTable" />
                             </h:commandButton>
+                            
                             <h:button value="Test FR-EN" outcome="participatetest?idtest=#{participationMBean.idTest}" />
-                            <h:commandButton value="Valider" action="#{participationMBean.submit(false)}" />
-                            <h:outputText id="showResult" value = "#{participationMBean.score != 0 ? participationMBean.score : '0' }" />
+                            <h:commandButton value="Valider" action="#{participationMBean.submit}" />
                             
                         </h:form>
                     </f:view>
