@@ -45,6 +45,17 @@ public class ListManager {
         return list;
     }
     
+    public List<entities.List> getAllList(){
+        Query query = em.createNamedQuery("List.findAll");
+        System.out.println(">>>>>");
+        List<entities.List> list = query.getResultList();
+        
+        list.forEach((item) -> {
+            System.out.println(item.getTitle());
+        });
+        return list;
+    }
+    
     public void deleteAllList() {
         Query query = em.createNamedQuery("List.deleteAll");
         query.executeUpdate();
