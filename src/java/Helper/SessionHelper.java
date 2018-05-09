@@ -30,6 +30,20 @@ public class SessionHelper {
         }
     }
 
+    public static Users getCurrentUser(){
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            ExternalContext externalcontext = context.getExternalContext();
+            Map usersessionmap = externalcontext.getSessionMap();
+            UserManagedBean userManagedBean = (UserManagedBean) usersessionmap.get("userManagedBean");
+            return userManagedBean.getLoggeduser();
+        } 
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
     /**
      * @return the userManagedBean
      */
