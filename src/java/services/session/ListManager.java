@@ -5,6 +5,7 @@
  */
 package services.session;
 
+import Helper.EntityHelper;
 import entities.Test;
 import entities.Users;
 import java.util.List;
@@ -48,5 +49,8 @@ public class ListManager {
         Query query = em.createNamedQuery("List.deleteAll");
         query.executeUpdate();
         em.flush();
+    }
+    public long getMaxIndexList(){
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORLIST);
     }
 }

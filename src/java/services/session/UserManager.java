@@ -5,6 +5,7 @@
  */
 package services.session;
 
+import Helper.EntityHelper;
 import entities.Users;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +37,10 @@ public class UserManager {
     
     public Users update(Users user){
         return em.merge(user);
+    }
+    
+    public long getMaxIndexUsers(){
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORUSERS);
     }
     
     public void deleteAllUsers() {
