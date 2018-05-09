@@ -66,21 +66,10 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Listid"/>
-                                    </f:facet>
-                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                        <h:inputText immediate="true" binding="#{inputListId}" value="#{item.listid}"/>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
-                                        <h:outputText value="#{item.listid}"/>
-                                    </h:panelGroup>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
                                         <h:outputText value="Iduser"/>
                                     </f:facet>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                        <h:inputText immediate="true" binding="#{inputIduser}" value="#{item.iduser}"/>
+                                        <h:outputText binding="#{inputIduser}" value="#{item.iduser}"/>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
                                         <h:outputText value="#{item.iduser}"/>
@@ -91,14 +80,14 @@
                                         <h:outputText value="Creationdate"/>
                                     </f:facet>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                    <h:inputText immediate="true" binding="#{inputCreationdate}" value="#{item.creationdate}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:inputText>
+                                        <h:inputText immediate="true" binding="#{inputCreationdate}" value="#{item.creationdate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:inputText>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
-                                    <h:outputText value="#{item.creationdate}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
+                                        <h:outputText value="#{item.creationdate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
@@ -106,27 +95,27 @@
                                         <h:outputText value="Modificationdate"/>
                                     </f:facet>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                    <h:inputText immediate="true" binding="#{inputModificationdate}" value="#{item.modificationdate}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:inputText>
+                                        <h:inputText immediate="true" binding="#{inputModificationdate}" value="#{item.modificationdate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:inputText>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
-                                    <h:outputText value="#{item.modificationdate}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                    </h:outputText>
+                                        <h:outputText value="#{item.modificationdate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Keyword"/>
                                     </f:facet>
-                                    
+
                                     <c:set var="key" value="#{item.keyword}"/>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                    <h:inputText immediate="true" binding="#{input1}" value="#{key}"/>
+                                        <h:inputText immediate="true" binding="#{input1}" value="#{key}"/>
                                     </h:panelGroup>
                                     <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
-                                    <h:outputText value="#{key}"/>
+                                        <h:outputText value="#{key}"/>
                                     </h:panelGroup>
                                 </p:column>
                                 <c:if test="#{userManagedBean.loggeduser!=null}">
@@ -134,11 +123,16 @@
                                         <f:facet name="addToList">
                                             <h:outputText value="Ajouter dans la liste"/>
                                         </f:facet>
-                                        <h:selectOneMenu value="test">
-                                            <c:forEach items="#{userManagedBean.loggeduser.listCollection}" var="theme">
-                                                <f:selectItem itemValue="#{theme.title}" itemLabel="#{theme.title}" />
-                                            </c:forEach>
-                                        </h:selectOneMenu>
+                                        <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
+                                            <h:selectOneMenu value="test">
+                                                <c:forEach items="#{userManagedBean.loggeduser.listCollection}" var="theme">
+                                                    <f:selectItem  itemValue="#{theme.title}" itemLabel="#{theme.title}" />
+                                                </c:forEach>
+                                            </h:selectOneMenu>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{item.iduser!=userManagedBean.loggeduser.iduser}">
+                                            <h:outputText value="pas applicable"/>
+                                        </h:panelGroup>
                                     </p:column>
                                     <p:column>
                                         <f:facet name="Modifier">
@@ -146,7 +140,7 @@
                                         </f:facet>
                                         <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
                                             <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
-                                                <h:commandButton immediate="true" value="Valider" action="#{wordManagedBean.showmodif(input1.value,item)}" class="button success"/>
+                                                <h:commandButton immediate="true" value="Valider" action="#{wordManagedBean.showmodif(inputFrench.value,inputEnglish.value,inputListId.value,inputIduser.value,inputCreationdate.value,inputModificationdate.value,input1.value,item)}" class="button success"/>
                                                 <h:commandButton value="Annuler" action="#{wordManagedBean.changemodifmode(0)}" class="button danger"/>
                                             </h:panelGroup>
                                             <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
@@ -173,6 +167,30 @@
                             
                         </h:form>
                     </f:view>
+                    <br></br>
+                    <h1>Insert word</h1>
+                    <h:form>
+                        <f:facet name="header">
+                            <h:outputText value="French"/>
+                        </f:facet>
+                            <h:outputText value=" inputFrench: "/>
+                            <h:inputText immediate="true" binding="#{createFrench}"  value=""/>
+                            <h:outputText value=" inputEnglish: "/>
+                            <h:inputText immediate="true" binding="#{createEnglish}"  value=""/>
+                            <h:outputText value=" listId: "/>
+                            <h:inputText immediate="true" binding="#{createlistid}" value=""/>
+                            <h:outputText value=" inputCreationdate: "/>
+                            <h:inputText immediate="true" binding="#{createCreationdate}" value="">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputText value=" inputModificationdate: "/>
+                            <h:inputText immediate="true" binding="#{createModificationdate}" value="">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputText value=" keyword: "/>
+                            <h:inputText immediate="true" binding="#{createKeyword}" value=""/>
+                            <h:commandButton immediate="true" value="Insert" action="#{wordManagedBean.insertword(createFrench.value, createEnglish.value, createlistid.value, 1, createCreationdate.value, createModificationdate.value, createKeyword.value)}" class="button success"/>
+                    </h:form>
                     <h:form id="form" enctype="multipart/form-data" class="form-group">
                         <h:inputFile id="fileuploaded" value="#{wordManagedBean.fileuploaded}" class="input-upload"/>
                         <h:commandButton value="#{msg['uploadbtn']}" action="#{wordManagedBean.upload}" class="button"/>
