@@ -6,7 +6,6 @@
 package managedbean;
 
 import Helper.Constants;
-import Helper.SessionHelper;
 import Helper.TestHelper;
 import entities.Test;
 import entities.Testresult;
@@ -34,6 +33,7 @@ public class ParticipationMBean implements Serializable{
     }
     
     private boolean showCorrection;
+    private boolean isFR_EN;
     private int idtest;
     private DataModel<Word> testHistoric; 
     private String[] userInput;    
@@ -45,13 +45,13 @@ public class ParticipationMBean implements Serializable{
     @EJB
     private HistoricManager historyManager;
     
-    public void submit(){
-        int userScore = TestHelper.CalculateScore(userInput, Constants._FR, testHistoric);
+    public void submit(boolean isFREN){
+        int userScore = TestHelper.CalculateScore(userInput,isFREN ? Constants._FR : Constants._EN, testHistoric);
         this.setScore(userScore);
-        Testresult testresult = new Testresult();
+        /*Testresult testresult = new Testresult();
         testresult.setIdtest(new Test(new Integer(idtest).longValue()));
         testresult.setIduser(new Users(1l));
-        historyManager.addUserTestResult(testresult);
+        historyManager.addUserTestResult(testresult);*/
     }
     
     public int getIdTest() {  
@@ -92,10 +92,11 @@ public class ParticipationMBean implements Serializable{
     
     
     
-    public void loadWords() {
+    public void loadWords(boolean isFREN) {
         List<Word> wordList = wordManager.getWords(String.valueOf(idtest));
         Word[] array = wordList.toArray(new Word[wordList.size()]);
         this.testHistoric = new ArrayDataModel<>(array);
-        userInput = new String[wordList.size()];
+        this.userInput = new String[wordList.size()];
+        this.isFR_EN = isFREN;
     }
 }
