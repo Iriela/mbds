@@ -87,7 +87,7 @@ public class WordManagedBean implements Serializable {
     }
     
     public void insertWord() {
-        Word newword = new Word(1l);
+        /*Word newword = new Word(1l);
         newword.setCreationdate(new Date());
         newword.setFrench("language");
         newword.setEnglish("langage");
@@ -96,7 +96,7 @@ public class WordManagedBean implements Serializable {
         newword.setListid("1");
         newword.setModificationdate(new Date());
         wordmanager.update(newword);*/
-        return null;
+        //return null;
     }
 
     public void upload() {
