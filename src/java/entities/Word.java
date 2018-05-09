@@ -48,7 +48,6 @@ public class Word implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "IDWORD")
     public Long idword;
@@ -79,10 +78,20 @@ public class Word implements Serializable {
         this.idword = idword;
     }
 
-    public Word(Long idword, String french, String english, long iduser, Date creationdate, Date modificationdate) {
+    public Word(Long idword, String french, String english,String listid,long iduser, Date creationdate, Date modificationdate) {
         this.idword = idword;
         this.french = french;
         this.english = english;
+        this.listid = listid;
+        this.iduser = iduser;
+        this.creationdate = creationdate;
+        this.modificationdate = modificationdate;
+    }
+    
+    public Word( String french, String english,String listid,long iduser, Date creationdate, Date modificationdate) {
+        this.french = french;
+        this.english = english;
+        this.listid = listid;
         this.iduser = iduser;
         this.creationdate = creationdate;
         this.modificationdate = modificationdate;
