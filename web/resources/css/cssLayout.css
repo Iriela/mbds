@@ -187,3 +187,17 @@ h3 {
 .input-upload {
     margin-top: 20px;
 }
+
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #036fab;
+}
+
+.result.green{
+    color: green;
+}
+
+.result.red{
+    color: red;
+}

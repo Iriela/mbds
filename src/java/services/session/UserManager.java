@@ -40,7 +40,7 @@ public class UserManager {
     }
     
     public long getMaxIndexUsers(){
-        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORUSERS);
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORUSERS)+1;
     }
     
     public void deleteAllUsers() {

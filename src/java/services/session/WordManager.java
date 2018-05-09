@@ -64,6 +64,6 @@ public class WordManager {
     }
     
     public long getMaxIndexWord(){
-        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORWORD);
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORWORD)+1;
     }
 }

@@ -15,11 +15,16 @@ import javax.persistence.Query;
  */
 public class EntityHelper {
     public static long getMaxIndex(EntityManager  em, String queryFor){
-        Query query = em.createQuery(queryFor);
-        List result = query.getResultList();
-        if(result.isEmpty()){
+        try{
+            Query query = em.createQuery(queryFor);
+            List result = query.getResultList();
+            System.out.println("result>>" + result);
+            System.out.println("result.get(0)>>" + result.get(0));
+            System.out.println("(long)result.get(0)>>" + (long)result.get(0));
+            return (long)result.get(0);
+        }
+        catch(Exception ex){
             return 1L;
         }
-        return (long)result.get(0);
     }
 }

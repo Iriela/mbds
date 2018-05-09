@@ -13,21 +13,30 @@ import javax.faces.model.DataModel;
  * @author iriel
  */
 public class TestHelper {
-    public static int CalculateScore(String[] userInput, String lang, DataModel<Word> words){
+    public static int CalculateScore(String[] userInput, String lang, DataModel<Word> words,int total){
         int score = 0;
         int i=0;
         for(Word word : words){
             System.out.println("FR: "+word.getFrench()+" EN:"+userInput[i]);
             if(lang.equalsIgnoreCase(Constants._EN)){
-                if(!word.getFrench().equalsIgnoreCase(userInput[i])) continue;
+                if(!word.getFrench().equalsIgnoreCase(userInput[i])){
+                    i++;
+                    continue;
+                }
                 score++;
             }
             else if(lang.equalsIgnoreCase(Constants._FR)){
-                if(!word.getEnglish().equalsIgnoreCase(userInput[i])) continue;
+                if(!word.getEnglish().equalsIgnoreCase(userInput[i])){
+                    i++;
+                    continue;
+                }
                 score++;
             }
             i++;
         }
-        return score;
+        System.out.println("score "+score);
+        System.out.println("total"+total);
+        
+        return score*20/total;
     }
 }

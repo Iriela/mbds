@@ -30,6 +30,9 @@
                     <f:view>
                         <h:form>
                             <h1><h:outputText value="#{msg['titleWord']}"/></h1>
+                            <label>Titre: </label><h:inputText value="#{wordManagedBean.themeTitle}"/>
+                            <label>Titre: </label><h:inputTextarea value="#{wordManagedBean.themeDescription}"/>
+                            
                             <p:dataTable value="#{wordManagedBean.listWord}" selection="#{wordManagedBean.selectedWords}" var="item" rowKey="#{item.idword}" id="checkboxDT">
                                 <f:facet name="header">
                                     Checkbox
