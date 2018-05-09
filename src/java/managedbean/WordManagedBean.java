@@ -26,6 +26,7 @@ import services.session.WordManager;
 @ViewScoped
 public class WordManagedBean implements Serializable {
 
+    private List<Word> selectedWords;
     private List<Word> listword;
     private Part fileuploaded;
     private Scanner fileContent;
@@ -176,5 +177,19 @@ public class WordManagedBean implements Serializable {
      */
     public void setWord(Word word) {
         this.word = word;
+    }
+
+    public List<Word> getSelectedWords() {
+        return selectedWords;
+    }
+
+    public void setSelectedWords(List<Word> selectedWords) {
+        this.selectedWords = selectedWords;
+    }
+    
+    public void submit(){
+        selectedWords.forEach((selectedWord) -> {
+            System.out.println("Word>>"+selectedWord.getFrench());
+        });
     }
 }
