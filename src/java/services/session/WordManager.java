@@ -51,6 +51,12 @@ public class WordManager {
     public Word update(Word word) {
         return em.merge(word);
     }
+    
+    public void delete(Word word){
+        Query query=em.createNamedQuery("Word.deleteById");
+        query.setParameter("idword", word.idword);
+        query.executeUpdate();
+    }
 
     public void persist(Object word) {
         em.persist(word);

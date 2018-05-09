@@ -32,9 +32,11 @@
             <h:commandButton value="#{msg['login']}" action="#{userManagedBean.connectuser}" class="button"/>
         </h:form>
     </c:if>
-    <h:form class="login_form">
-        <h:commandButton value="#{msg['logout']}" action="#{userManagedBean.loggoutuser}" class="button"/>
-    </h:form>
+    <c:if test="#{userManagedBean.loggeduser != null}">
+        <h:form class="login_form">
+            <h:commandButton value="#{msg['logout']}" action="#{userManagedBean.loggoutuser}" class="button"/>
+        </h:form>
+    </c:if>
     
     
 </ui:composition>

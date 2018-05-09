@@ -39,6 +39,7 @@ public class WordManagedBean implements Serializable {
     private List<entities.List> listTheme;
     private ArrayList<entities.List> listThemeByUser;
     private Long listThemeByUserNumber;
+    private Long selectedThemeId;
 
     @EJB
     private WordManager wordmanager;
@@ -50,6 +51,19 @@ public class WordManagedBean implements Serializable {
         
     }
 
+    public void addtotheme(Word addword, entities.List theme){
+        if(addword.getListid()==null){
+            addword.setListid(theme.getIdlist().toString());
+            addword.setModificationdate(new Date());
+            wordmanager.update(addword);
+        }
+        else{
+            addword.setListid(addword.getListid()+"|"+theme.getIdlist().toString());
+            addword.setModificationdate(new Date());
+            wordmanager.update(addword);
+        }
+    }
+    
     public ArrayList<entities.List> getWordThemeByUser(Word wordthemebyuser){
         this.word=wordthemebyuser;
         listTheme=listManager.getUserList(sessionhelper.getUserManagedBean().getLoggeduser());
@@ -68,6 +82,18 @@ public class WordManagedBean implements Serializable {
         }
         this.listThemeByUserNumber=Long.parseLong(Integer.toString(this.listThemeByUser.size()));
         return this.listThemeByUser;
+    }
+    
+    public Boolean containedInword(Long themeid, Word checkword){
+        int i=0;
+        if(checkword.getListid()==null || checkword.getListid()=="")
+            return true;
+        while(i<checkword.getListid().split("|").length){
+            if(themeid==Long.parseLong(checkword.getListid().split("|")[i]))
+                return false;
+            i++;
+        }
+        return true;
     }
     
     public ArrayList<entities.List> getWordThemeByUser(){
@@ -97,20 +123,23 @@ public class WordManagedBean implements Serializable {
         System.out.print("testinsert");
     }
 
+    public void deleteword(Word deleteword){
+        wordmanager.delete(deleteword);
+    }
 
     public void changemodifmode(int idmodif) {
         //Long idlong=new Long(wordmodif.getIduser());
         this.setIsmodifmode(idmodif);
     }
     
-    public void insertword(String French, String inputenglish, Long Listid, Long Iduser, Date Creationdate, Date Modificationdate, String key){
-        Word newword = new Word(new Long(5));
+    public void insertword(String French, String inputenglish, String key){
+        Word newword = new Word(wordmanager.getWords().get(wordmanager.getWords().size()-1).idword+1);
         newword.setFrench(French);
         newword.setEnglish(inputenglish);
-        newword.setListid(Listid.toString());
-        newword.setIduser(Iduser);
-        newword.setCreationdate(Creationdate);
-        newword.setModificationdate(Modificationdate);
+        newword.setListid(null);
+        newword.setIduser(sessionhelper.getUserManagedBean().getIduserlogged());
+        newword.setCreationdate(new Date());
+        newword.setModificationdate(new Date());
         newword.setKeyword(key);
         wordmanager.persist(newword);
     }
@@ -120,11 +149,11 @@ public class WordManagedBean implements Serializable {
         wordmodif.setFrench(French);
         wordmodif.setEnglish(inputenglish);
         //wordmodif.setListid(key);
-        wordmodif.setCreationdate(Creationdate);
-        wordmodif.setModificationdate(Modificationdate);
+        wordmodif.setModificationdate(new Date());
         wordmodif.setKeyword(key);
         System.out.println("key: " + wordmodif.getEnglish());
         wordmanager.update(wordmodif);
+        this.ismodifmode=0;
     }
 
     public void modif(Word word) {
@@ -169,13 +198,13 @@ public class WordManagedBean implements Serializable {
             while (fileContent.hasNextLine()) {
                 String line = fileContent.nextLine();
                 String[] splitLine = line.split(",");
-                Word newword = new Word(Long.parseLong(splitLine[0]));
+                Word newword = new Word(wordmanager.getWords().get(wordmanager.getWords().size()-1).idword+1);
                 newword.setCreationdate(new Date());
-                newword.setFrench(splitLine[1]);
-                newword.setEnglish(splitLine[2]);
-                newword.setIduser(Integer.parseInt(splitLine[3]));
-                newword.setListid(splitLine[4]);
-                newword.setKeyword(splitLine[5]);
+                newword.setFrench(splitLine[0]);
+                newword.setEnglish(splitLine[1]);
+                newword.setIduser(sessionhelper.getUserManagedBean().getIduserlogged());
+                newword.setListid(null);
+                newword.setKeyword(splitLine[2]);
                 newword.setModificationdate(new Date());
                 wordmanager.persist(newword);
                 System.out.println(line);
@@ -296,5 +325,19 @@ public class WordManagedBean implements Serializable {
         selectedWords.forEach((selectedWord) -> {
             System.out.println("Word>>"+selectedWord.getFrench());
         });
+    }
+
+    /**
+     * @return the selectedThemeId
+     */
+    public Long getSelectedThemeId() {
+        return selectedThemeId;
+    }
+
+    /**
+     * @param selectedThemeId the selectedThemeId to set
+     */
+    public void setSelectedThemeId(Long selectedThemeId) {
+        this.selectedThemeId = selectedThemeId;
     }
 }

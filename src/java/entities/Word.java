@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Word.findByModificationdate", query = "SELECT w FROM Word w WHERE w.modificationdate = :modificationdate")
     , @NamedQuery(name = "Word.findByKeyword", query = "SELECT w FROM Word w WHERE w.keyword = :keyword") 
     , @NamedQuery(name = "Word.deleteAll", query = "DELETE FROM Word")
+    , @NamedQuery(name = "Word.deleteById", query = "DELETE FROM Word w WHERE w.idword = :idword")
 })
     
 public class Word implements Serializable {
