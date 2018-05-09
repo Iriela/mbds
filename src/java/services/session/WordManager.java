@@ -5,7 +5,7 @@
  */
 package services.session;
 
-import entities.Test;
+import Helper.EntityHelper;
 import entities.Word;
 import java.util.List;
 import javax.ejb.LocalBean;
@@ -54,5 +54,9 @@ public class WordManager {
 
     public void persist(Object word) {
         em.persist(word);
+    }
+    
+    public long getMaxIndexWord(){
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORWORD);
     }
 }
