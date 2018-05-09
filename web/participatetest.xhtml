@@ -17,17 +17,17 @@
             <ui:define name="top">
                 TP MBDS
             </ui:define>
-
+            
             <ui:define name="content">
                 <h1 class="title">HOME > PARTICIPER AU TEST</h1>
                 <div class="content_page">
                     <f:view>
-                        <h:form>
+                        <h:form id="formId">
                             <h1><h:outputText value="List"/></h1>
-                            <p:dataTable value="#{participationMBean.wordList}" var="item">
+                            <p:dataTable value="#{participationMBean.wordList}" var="item" id="showCorrection" rowIndexVar="index">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idword"/>
+                                        <h:outputText value="IdWord"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idword}"/>
                                 </p:column>
@@ -41,9 +41,26 @@
                                     <f:facet name="header">
                                         <h:outputText value="English"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.english}"/>
+                                    <h:inputText value="#{participationMBean.userInput[index]}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Correction"/>
+                                    </f:facet>
+                                    <h:panelGroup rendered="#{participationMBean.showCorrection}">
+                                        <h:outputText value = "#{item.english}"/>
+                                    </h:panelGroup>
+                                    
                                 </p:column>
                             </p:dataTable>
+                            
+                            
+                            <h:commandButton value = "Correction" action="#{participationMBean.changeShowStatus}">
+                                <f:ajax render = "showCorrection" />
+                            </h:commandButton>
+                            <h:commandButton value="Valider" action="#{participationMBean.submit}" />
+                            <h:outputText id="showResult" value = "#{participationMBean.score != 0 ? participationMBean.score : '0' }" />
+                            
                         </h:form>
                     </f:view>
 

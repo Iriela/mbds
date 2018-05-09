@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,6 +45,7 @@ public class Word implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "IDWORD")
     private Long idword;
@@ -85,7 +88,7 @@ public class Word implements Serializable {
     public Long getIdword() {
         return idword;
     }
-
+    
     public void setIdword(Long idword) {
         this.idword = idword;
     }

@@ -42,4 +42,9 @@ public class HistoricManager {
         }
         return result.get(0);
     }
+    
+    public void addUserTestResult(entities.Testresult testresult){
+        em.persist(testresult);
+        em.flush();
+    }
 }
