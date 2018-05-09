@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/default_template.xhtml">
+
+            <ui:define name="top">
+                TP MBDS
+                <h:form class="select-lang">
+                    <h:panelGrid columns = "2"> 
+                       <h:outputText value = "#{msg['lang']} :" />
+                       <h:selectOneMenu value = "#{lang.locale}" onchange = "submit()"
+                          valueChangeListener = "#{lang.localeChanged}">
+                          <f:selectItems value = "#{lang.countries}" /> 
+                       </h:selectOneMenu>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h1 class="title">#{msg['home']} > #{msg['words']}</h1>
+                <div class="content_page">
+                    <f:view>
+                        <h:form>
+                            <h1><h:outputText value="#{msg['titleWord']}"/></h1>
+                            <p:dataTable value="#{wordManagedBean.listWord}" selection="#{wordManagedBean.selectedWords}" var="item" rowKey="#{item.idword}" id="checkboxDT">
+                                <f:facet name="header">
+                                    Checkbox
+                                </f:facet>
+                                <p:column>
+                                    <h:selectBooleanCheckbox value="#{bean.checked[item.id]}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="French"/>
+                                    </f:facet>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputFrench}" value="#{item.french}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.french}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="English"/>
+                                    </f:facet>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                        <h:inputText immediate="true" binding="#{inputEnglish}" value="#{item.english}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                        <h:outputText value="#{item.english}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column filterBy="#{item.keyword}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Keyword"/>
+                                    </f:facet>
+                                    
+                                    <c:set var="key" value="#{item.keyword}"/>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                    <h:inputText immediate="true" binding="#{input1}" value="#{key}"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                    <h:outputText value="#{key}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <c:if test="#{userManagedBean.loggeduser!=null}">
+                                    <p:column>
+                                        <f:facet name="addToList">
+                                            <h:outputText value="Ajouter dans la liste"/>
+                                        </f:facet>
+                                        <h:selectOneMenu value="test">
+                                            <c:forEach items="#{userManagedBean.loggeduser.listCollection}" var="theme">
+                                                <f:selectItem itemValue="#{theme.title}" itemLabel="#{theme.title}" />
+                                            </c:forEach>
+                                        </h:selectOneMenu>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="Modifier">
+                                            <h:outputText value="Modifier"/>
+                                        </f:facet>
+                                        <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
+                                            <h:panelGroup rendered="#{wordManagedBean.ismodifmode==item.idword}">
+                                                <h:commandButton immediate="true" value="Valider" action="#{wordManagedBean.showmodif(input1.value,item)}" class="button success"/>
+                                                <h:commandButton value="Annuler" action="#{wordManagedBean.changemodifmode(0)}" class="button danger"/>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{wordManagedBean.ismodifmode!=item.idword}">
+                                                <h:commandButton value="Modifier" action="#{wordManagedBean.changemodifmode(item.idword)}" class="button"/>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{item.iduser!=userManagedBean.loggeduser.iduser}">
+                                            <h:outputText value="pas applicable"/>
+                                        </h:panelGroup>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="supprimer">
+                                            <h:outputText value="Supprimer"/>
+                                        </f:facet>
+                                        <h:panelGroup rendered="#{item.iduser==userManagedBean.loggeduser.iduser}">
+                                            <h:commandButton value="Supprimer" action="#{wordManagedBean.upload}" class="button"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{item.iduser!=userManagedBean.loggeduser.iduser}">
+                                            <h:outputText value="pas applicable"/>
+                                        </h:panelGroup>
+                                    </p:column>
+                                </c:if>
+                            </p:dataTable>
+                            <p:commandButton value="submit" action="#{wordManagedBean.submit}"/>
+                        </h:form>
+                    </f:view>
+                    
+                    
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
