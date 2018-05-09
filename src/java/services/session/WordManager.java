@@ -40,9 +40,11 @@ public class WordManager {
         String p1 = "%|"+ idlist + "|%";
         String p2 = idlist + "|%";
         String p3 = "%|" + idlist;
+        String p4 = idlist;
         query.setParameter("p1", p1);
         query.setParameter("p2", p2);
         query.setParameter("p3", p3);
+        query.setParameter("p4", p4);
         return query.getResultList();
     }
     

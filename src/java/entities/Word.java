@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Word.findByFrench", query = "SELECT w FROM Word w WHERE w.french = :french")
     , @NamedQuery(name = "Word.findByEnglish", query = "SELECT w FROM Word w WHERE w.english = :english")
     , @NamedQuery(name = "Word.findByListid", query = "SELECT w FROM Word w WHERE w.listid = :listid")
-    , @NamedQuery(name = "Word.extendedFindListid", query = "SELECT w FROM Word w WHERE w.listid LIKE :p1 OR w.listid LIKE :p2 OR w.listid LIKE :p3")
+    , @NamedQuery(name = "Word.extendedFindListid", query = "SELECT w FROM Word w WHERE w.listid LIKE :p1 OR w.listid LIKE :p2 OR w.listid LIKE :p3 OR w.listid = :p4")
     , @NamedQuery(name = "Word.findByIduser", query = "SELECT w FROM Word w WHERE w.iduser = :iduser")
     , @NamedQuery(name = "Word.findByCreationdate", query = "SELECT w FROM Word w WHERE w.creationdate = :creationdate")
     , @NamedQuery(name = "Word.findByModificationdate", query = "SELECT w FROM Word w WHERE w.modificationdate = :modificationdate")
