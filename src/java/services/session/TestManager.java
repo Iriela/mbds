@@ -5,6 +5,7 @@
  */
 package services.session;
 
+import Helper.EntityHelper;
 import entities.Test;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -24,5 +25,13 @@ public class TestManager {
     public List<Test> getTests(){
         Query query = em.createNamedQuery("Test.findAll");
         return query.getResultList();
+    }
+    
+    public long getMaxIndexTest(){
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORTEST);
+    }
+    
+    public long getMaxIndexTestResult(){
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORTESTRESULT);
     }
 }   

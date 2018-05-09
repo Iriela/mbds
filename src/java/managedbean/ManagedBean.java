@@ -6,6 +6,7 @@
 package managedbean;
 
 import Helper.SessionHelper;
+import entities.Users;
 import entities.Word;
 import services.session.WordManager;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ import javax.faces.view.ViewScoped;
 import services.session.HistoricManager;
 import services.session.ListManager;
 import services.session.TestManager;
+import services.session.UserManager;
 
 /**
  *
@@ -42,6 +44,9 @@ public class ManagedBean implements Serializable {
     private ListManager listManager;
     
     @EJB
+    private UserManager userManager;
+    
+    @EJB
     private TestManager testManager;
     
     @EJB
@@ -56,10 +61,7 @@ public class ManagedBean implements Serializable {
     // Get all theme created by the user
     public List<entities.List> getTestThemeList(){
         try {
-            if (list == null) {
-                list = listManager.getUserList(sessionhelper.getUserManagedBean().getLoggeduser());
-            }
-            return list;
+            return listManager.getUserList(sessionhelper.getUserManagedBean().getLoggeduser());
         } catch (Exception exc) {
         }
         return null;
@@ -93,56 +95,56 @@ public class ManagedBean implements Serializable {
 	Date date = new Date();
         
         String[] wordsFR = new String[50];
-        wordsFR[0] = "un patron";
+        wordsFR[0] = "patron";
         wordsFR[1] = "classe";
-        wordsFR[2] = "un cours";
-        wordsFR[3] = "un diplome";
+        wordsFR[2] = "cours";
+        wordsFR[3] = "diplome";
         wordsFR[4] = "sec";
-        wordsFR[5] = "un effort";
+        wordsFR[5] = "effort";
         wordsFR[6] = "egal";
-        wordsFR[7] = "une usine";
-        wordsFR[8] = "les devoirs";
-        wordsFR[9] = "le drirecteur";
-        wordsFR[10] = "un muscle";
-        wordsFR[11] = "un emploi du temps";
-        wordsFR[12] = "un savant";
-        wordsFR[13] = "une competence";
-        wordsFR[14] = "un agrafeuse";
-        wordsFR[15] = "une equipe";
-        wordsFR[16] = "un outil";
-        wordsFR[17] = "le travail";
-        wordsFR[18] = "le lieu de travail";
+        wordsFR[7] = "usine";
+        wordsFR[8] = "devoirs";
+        wordsFR[9] = "drirecteur";
+        wordsFR[10] = "muscle";
+        wordsFR[11] = "emploi du temps";
+        wordsFR[12] = "savant";
+        wordsFR[13] = "competence";
+        wordsFR[14] = "agrafeuse";
+        wordsFR[15] = "equipe";
+        wordsFR[16] = "outil";
+        wordsFR[17] = "travail";
+        wordsFR[18] = "lieu de travail";
         wordsFR[19] = "des hors-d'oeuvre";
-        wordsFR[20] = "une pomme";
-        wordsFR[21] = "une banane";
-        wordsFR[22] = "un bar";
-        wordsFR[23] = "un haricot";
-        wordsFR[24] = "un boeuf";
-        wordsFR[25] = "une biere";
-        wordsFR[26] = "un billet";
+        wordsFR[20] = "pomme";
+        wordsFR[21] = "banane";
+        wordsFR[22] = "bar";
+        wordsFR[23] = "haricot";
+        wordsFR[24] = "boeuf";
+        wordsFR[25] = "biere";
+        wordsFR[26] = "billet";
         wordsFR[27] = "u bouteille";
-        wordsFR[28] = "un bol";
-        wordsFR[29] = "une action";
-        wordsFR[30] = "un acteur";
-        wordsFR[31] = "l'art";
-        wordsFR[32] = "un chaine";
-        wordsFR[33] = "la foule";
+        wordsFR[28] = "bol";
+        wordsFR[29] = "action";
+        wordsFR[30] = "acteur";
+        wordsFR[31] = "art";
+        wordsFR[32] = "chaine";
+        wordsFR[33] = "foule";
         wordsFR[34] = "celebre";
-        wordsFR[35] = "un jeu";
-        wordsFR[36] = "le golf";
-        wordsFR[37] = "une promenade";
+        wordsFR[35] = "jeu";
+        wordsFR[36] = "golf";
+        wordsFR[37] = "promenade";
         wordsFR[38] = "plus fort";
-        wordsFR[39] = "l'air";
+        wordsFR[39] = "air";
         wordsFR[40] = "apparaitre";
         wordsFR[41] = "nuageux";
         wordsFR[42] = "froid";
         wordsFR[43] = "sombre";
         wordsFR[44] = "tomber";
-        wordsFR[45] = "le brouillard";
+        wordsFR[45] = "brouillard";
         wordsFR[46] = "gris";
-        wordsFR[47] = "la chaleur";
+        wordsFR[47] = "chaleur";
         wordsFR[48] = "chaud";
-        wordsFR[49] = "la glace";
+        wordsFR[49] = "glace";
         
         String[] wordsEN = new String[50];
         wordsEN[0] = "boss";
@@ -198,15 +200,15 @@ public class ManagedBean implements Serializable {
         
         for(Long i=0L;i<wordsEN.length;i++) {
             if(i.intValue()<=15) {
-                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"4",1L,date,date);
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"4|1",1L,date,date);
                 wordManager.update(word);
             }
             else if(i.intValue()>15 && i.intValue()<=30) {
-                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"3",1L,date,date);
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"3|2",1L,date,date);
                 wordManager.update(word);
             }
             else if(i.intValue()>30 && i.intValue()<=35) {
-                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"2",1L,date,date);
+                Word word = new Word(i,wordsFR[i.intValue()],wordsEN[i.intValue()],"2|3",1L,date,date);
                 wordManager.update(word);
             }
             else {
@@ -215,22 +217,34 @@ public class ManagedBean implements Serializable {
             }
         }
         
-        //entities.List list1 = new entities.List(1L,"Travail","Ensemble des mots concernant le travail en generale",date,date);
+        Users user1 = new Users(1L,false,"user","user",date,date);
+        Users user2 = new Users(2L,true,"admin","admin",date,date);
         
-        //listManager.update(list1);
+        entities.List list1 = new entities.List(1L,"Travail","Ensemble des mots concernant le travail en generale",user1,date,date);
+        entities.List list2 = new entities.List(2L,"Aliment","Ensemble des mots concernant les aliments ",user2,date,date);
+        entities.List list3 = new entities.List(3L,"Sport","Ensemble des mots concernant le sport en generale",user2,date,date);
+        entities.List list4 = new entities.List(4L,"Boulot","Ensemble des mots concernant le boulot",user1,date,date);
+        
+        userManager.update(user1);
+        userManager.update(user2);
+        
+        listManager.update(list1);
+        listManager.update(list2);
+        listManager.update(list3);
+        listManager.update(list4);
         
     }
     
     public void dropInit() {
-        System.out.println("getDropInit");
+       listManager.deleteAllList();
        wordManager.deleteAllWords();
-       //listManager.deleteAllList();
+       userManager.deleteAllUsers();
        insertDB(); 
     }
     
     public void init() {
+        listManager.deleteAllList();
         wordManager.deleteAllWords();
-        //listManager.deleteAllList();
         insertDB();
     }
     

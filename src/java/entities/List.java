@@ -81,10 +81,11 @@ public class List implements Serializable {
         this.idlist = idlist;
     }
 
-    public List(Long idlist, String title, String description, Date creationdate, Date modificationdate) {
+    public List(Long idlist, String title, String description, Users iduser,Date creationdate, Date modificationdate) {
         this.idlist = idlist;
         this.title = title;
         this.description = description;
+        this.iduser = iduser;
         this.creationdate = creationdate;
         this.modificationdate = modificationdate;
     }

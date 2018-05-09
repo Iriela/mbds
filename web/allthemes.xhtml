@@ -11,44 +11,29 @@
         <ui:composition template="./WEB-INF/templates/default_template.xhtml">
 
             <ui:define name="top">
-                TP MBDS
-                <h:form class="select-lang">
-                    <h:panelGrid columns = "2"> 
-                       <h:outputText value = "#{msg['lang']} :" />
-                       <h:selectOneMenu value = "#{lang.locale}" onchange = "submit()"
-                          valueChangeListener = "#{lang.localeChanged}">
-                          <f:selectItems value = "#{lang.countries}" /> 
-                       </h:selectOneMenu>
-                    </h:panelGrid>
-                </h:form>
+                TP-MBDS
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">#{msg['home']} > #{msg['test']}</h1>
+                <h1 class="title">HOME > PARTICIPER AU TEST</h1>
                 <div class="content_page">
                     <f:view>
 
 
                         <h:form>
-                            <h1><h:outputText value="#{msg['titleTest']}"/></h1>
-                            <p:dataTable value="#{testManagedBean.tests}" var="item">
+                            <h1><h:outputText value="List"/></h1>
+                            <p:dataTable value="#{themeMBean.allTheme}" var="item">
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Idtest"/>
+                                        <h:outputText value="Title"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idtest}"/>
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Titre"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idlist.title}"/>
+                                    <h:outputText value="#{item.title}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Description"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idlist.description}"/>
+                                    <h:outputText value="#{item.description}"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
@@ -68,9 +53,9 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Participer"/>
+                                        <h:outputText value="Keyword"/>
                                     </f:facet>
-                                    <h:link outcome="participatetest?idtest=#{item.idtest}" value="Voir"/>
+                                    <h:outputText value="#{item.keyword}"/>
                                 </p:column>
                             </p:dataTable>
                         </h:form>

@@ -114,7 +114,7 @@ public class WordManagedBean implements Serializable {
         this.listThemeByUserNumber=Long.parseLong(Integer.toString(this.listThemeByUser.size()));
         return this.listThemeByUser;
     }
-    
+        
     public List<Word> getListWord() {
         return wordmanager.getWords();
     }
