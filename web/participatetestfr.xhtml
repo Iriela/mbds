@@ -61,7 +61,7 @@
                             </h:commandButton>
                             
                             <h:button class="button" value="Test FR-EN" outcome="participatetest?idtest=#{participationMBean.idTest}" />
-                            <h:commandButton class="button" value="Valider" action="#{participationMBean.submit}" />
+                            <h:commandButton class="button" value="Valider" action="#{participationMBean.submit(false)}" />
                             
                         </h:form>
                     </f:view>

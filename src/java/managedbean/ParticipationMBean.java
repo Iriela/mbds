@@ -51,13 +51,13 @@ public class ParticipationMBean implements Serializable{
     @EJB
     private TestManager testManager;
     
-    public void submit(){
-        Integer userScore = TestHelper.CalculateScore(userInput,Constants._FR, testHistoric,size-1);
-        System.out.println("score "+userScore);
+    public void submit(boolean isFR){
+        Integer userScore = TestHelper.CalculateScore(userInput,isFR ? Constants._FR : Constants._EN, testHistoric,size-1);
+        //System.out.println("score "+userScore);
         
         this.setScore(userScore);
         long l = testManager.getMaxIndexTestResult();
-        System.out.print("L value >>>"+l);
+        //System.out.print("L value >>>"+l);
         Testresult testresult = new Testresult(l);
         testresult.setIdtest(new Test(new Integer(idtest).longValue()));
         testresult.setIduser(new Users(1l));
@@ -66,17 +66,6 @@ public class ParticipationMBean implements Serializable{
         testresult.setModificationdate(new Date());
         historyManager.addUserTestResult(testresult);
         this.userInput = new String[size];
-    }
-    
-    public void submit1(){
-        int userScore = TestHelper.CalculateScore(userInput,Constants._EN, testHistoric,size-1);
-        System.out.println("score "+userScore);
-        
-        this.setScore(userScore);
-        /*Testresult testresult = new Testresult();
-        testresult.setIdtest(new Test(new Integer(idtest).longValue()));
-        testresult.setIduser(new Users(1l));
-        historyManager.addUserTestResult(testresult);*/
     }
     
     public int getIdTest() {  
