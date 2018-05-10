@@ -34,7 +34,7 @@ public class WordManagedBean implements Serializable {
     private Scanner fileContent;
     private String idinsert;
     private SessionHelper sessionhelper = new SessionHelper();
-    private int ismodifmode = 0;
+    private int ismodifmode = -1;
     private Word word;
     private List<entities.List> listTheme;
     private ArrayList<entities.List> listThemeByUser;
