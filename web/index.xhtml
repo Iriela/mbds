@@ -34,7 +34,7 @@
                         <p:growl id="message" showDetail="true" />
 
                         <p:commandButton class="" value="#{msg['init']}" actionListener="#{testManagedBean.dropInit}" update="message">
-                            <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                            <p:confirm header="Confirmation" message="Ils y a deja des donnees dans votre bases,voulez vous les ecraser?" icon="ui-icon-alert" />
                         </p:commandButton>
 
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
