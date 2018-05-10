@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.Part;
@@ -339,6 +340,8 @@ public class WordManagedBean implements Serializable {
             Word updatedWord = WordHelper.addToList(selectedWord, list.getIdlist());
             wordmanager.update(updatedWord);
         });
+        
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "allthemes.xhtml");
     }
 
     /**
