@@ -23,9 +23,9 @@
                 <div class="content_page">
                     <f:view>
                         <h:form id="formId">
-                            <h:outputText id="showResult" value = "#{participationMBean.score != 0 ? participationMBean.score : '' }" />
-                            <h1><h:outputText value="List"/></h1>
-                            <p:dataTable value="#{participationMBean.wordList}" var="item" id="refreshTable" rowIndexVar="index">
+                            <h:outputText id="showResult" class="#{participationMBean.score > 10 ? 'result green' : 'result red'}" value = "#{participationMBean.score != 0 ? participationMBean.formattedString : '' }" />
+                            <h1><h:outputText value="Remplir les champs vide pour faire le test"/></h1>
+                            <p:dataTable paginator="true" rows="10" value="#{participationMBean.wordList}" var="item" id="refreshTable" rowIndexVar="index">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="IdWord"/>
@@ -56,12 +56,12 @@
                             </p:dataTable>
                             
                             
-                            <h:commandButton value = "Correction" action="#{participationMBean.changeShowStatus}">
+                            <h:commandButton class="button" value = "Correction" action="#{participationMBean.changeShowStatus}">
                                 <f:ajax render = "refreshTable" />
                             </h:commandButton>
                             
-                            <h:button value="Test FR-EN" outcome="participatetest?idtest=#{participationMBean.idTest}" />
-                            <h:commandButton value="Valider" action="#{participationMBean.submit}" />
+                            <h:button class="button" value="Test FR-EN" outcome="participatetest?idtest=#{participationMBean.idTest}" />
+                            <h:commandButton class="button" value="Valider" action="#{participationMBean.submit}" />
                             
                         </h:form>
                     </f:view>
