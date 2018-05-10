@@ -31,6 +31,7 @@
                         <h:form>
                             <h1><h:outputText value=""/></h1>
                             
+                            <c:if test="#{userManagedBean.loggeduser!=null}">
                             <div class="login_form_group">
                                 <label>Titre: </label>
                                 <h:inputText value="#{wordManagedBean.themeTitle}"/>
@@ -40,7 +41,7 @@
                                 <label>Description: </label>
                                 <h:inputTextarea class="text-area" value="#{wordManagedBean.themeDescription}"/>
                             </div>
-                            
+                            </c:if>
                        
                             <h1><h:outputText value="Cochez les mots pour les ajouter dans votre liste"/></h1>
                             
@@ -125,7 +126,9 @@
                                     </p:column>
                                 </c:if>
                             </p:dataTable>
-                            <p:commandButton value="submit" action="#{wordManagedBean.submit}"/>
+                            <c:if test="#{userManagedBean.loggeduser!=null}">
+                                <p:commandButton value="submit" action="#{wordManagedBean.submit}"/>
+                            </c:if>
                         </h:form>
                     </f:view>
                     

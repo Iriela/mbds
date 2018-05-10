@@ -331,7 +331,7 @@ public class WordManagedBean implements Serializable {
     public void submit(){
         //insert new theme
         
-        entities.List list = new entities.List(listManager.getMaxIndexList(),this.themeTitle, this.themeDescription,new Users(1L), new Date(), new Date());
+        entities.List list = new entities.List(listManager.getMaxIndexList(),this.themeTitle, this.themeDescription,sessionhelper.getUserManagedBean().getLoggeduser(), new Date(), new Date());
         listManager.update(list);
 
         //add theme to each word
