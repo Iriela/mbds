@@ -187,3 +187,37 @@ h3 {
 .input-upload {
     margin-top: 20px;
 }
+
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #036fab;
+}
+
+.result.green{
+    color: green;
+}
+
+.result.red{
+    color: red;
+}
+
+.ui-button-text {
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+.ui-button-text-only {
+    margin-top: 20px;
+}
+
+.text-area {
+    width: 100%;
+    height: 80px;
+    margin: 10px 0;
+    border: 1px solid #036fab;
+}
+
+.last {
+    margin-bottom: 10px;
+}

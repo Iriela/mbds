@@ -6,6 +6,7 @@
 package managedbean;
 
 import Helper.SessionHelper;
+import entities.Test;
 import entities.Users;
 import entities.Word;
 import services.session.WordManager;
@@ -217,13 +218,25 @@ public class ManagedBean implements Serializable {
             }
         }
         
+        
+        
         Users user1 = new Users(1L,false,"user","user",date,date);
         Users user2 = new Users(2L,true,"admin","admin",date,date);
+        
         
         entities.List list1 = new entities.List(1L,"Travail","Ensemble des mots concernant le travail en generale",user1,date,date);
         entities.List list2 = new entities.List(2L,"Aliment","Ensemble des mots concernant les aliments ",user2,date,date);
         entities.List list3 = new entities.List(3L,"Sport","Ensemble des mots concernant le sport en generale",user2,date,date);
         entities.List list4 = new entities.List(4L,"Boulot","Ensemble des mots concernant le boulot",user1,date,date);
+        
+        Test test1 = new Test(1L,user1,list1,date,date);
+        Test test2 = new Test(2L,user1,list1,date,date);
+        Test test3 = new Test(3L,user2,list1,date,date);
+        
+        testManager.update(test1);
+        testManager.update(test2);
+        testManager.update(test3);
+                
         
         userManager.update(user1);
         userManager.update(user2);
@@ -239,12 +252,15 @@ public class ManagedBean implements Serializable {
        listManager.deleteAllList();
        wordManager.deleteAllWords();
        userManager.deleteAllUsers();
+       testManager.deleteAllTest();
        insertDB(); 
     }
     
     public void init() {
         listManager.deleteAllList();
         wordManager.deleteAllWords();
+        userManager.deleteAllUsers();
+        testManager.deleteAllTest();
         insertDB();
     }
     

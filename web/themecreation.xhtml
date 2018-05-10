@@ -25,12 +25,26 @@
             </ui:define>
 
             <ui:define name="content">
-                <h1 class="title">#{msg['home']} > #{msg['words']}</h1>
+                <h1 class="title">#{msg['home']} > #{msg['themecreation']}</h1>
                 <div class="content_page">
                     <f:view>
                         <h:form>
-                            <h1><h:outputText value="#{msg['titleWord']}"/></h1>
-                            <p:dataTable value="#{wordManagedBean.listWord}" selection="#{wordManagedBean.selectedWords}" var="item" rowKey="#{item.idword}" id="checkboxDT">
+                            <h1><h:outputText value=""/></h1>
+                            
+                            <div class="login_form_group">
+                                <label>Titre: </label>
+                                <h:inputText value="#{wordManagedBean.themeTitle}"/>
+                            </div>
+                            
+                            <div class="login_form_group last">
+                                <label>Description: </label>
+                                <h:inputTextarea class="text-area" value="#{wordManagedBean.themeDescription}"/>
+                            </div>
+                            
+                       
+                            <h1><h:outputText value="Cochez les mots pour les ajouter dans votre liste"/></h1>
+                            
+                            <p:dataTable paginator="true" rows="15" value="#{wordManagedBean.listWord}" selection="#{wordManagedBean.selectedWords}" var="item" rowKey="#{item.idword}" id="checkboxDT">
                                 <f:facet name="header">
                                     Checkbox
                                 </f:facet>

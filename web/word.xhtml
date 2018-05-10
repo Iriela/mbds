@@ -30,7 +30,7 @@
                     <f:view>
                         <h:form>
                             <h1><h:outputText value="#{msg['titleWord']}"/></h1>
-                            <p:dataTable value="#{wordManagedBean.listWord}" var="item">
+                            <p:dataTable paginator="true" rows="7" value="#{wordManagedBean.listWord}" var="item">
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Idword"/>

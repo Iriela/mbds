@@ -62,6 +62,6 @@ public class ListManager {
         em.flush();
     }
     public long getMaxIndexList(){
-        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORLIST);
+        return EntityHelper.getMaxIndex(em, Helper.Constants._QUERYFORLIST)+1;
     }
 }

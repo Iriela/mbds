@@ -57,6 +57,12 @@
                                     </f:facet>
                                     <h:outputText value="#{item.keyword}"/>
                                 </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Details"/>
+                                    </f:facet>
+                                    <h:link outcome="themebyid?idtheme=#{item.idlist}" value="Voir"/>
+                                </p:column>
                             </p:dataTable>
                         </h:form>
                     </f:view>

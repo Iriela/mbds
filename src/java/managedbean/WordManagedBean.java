@@ -5,7 +5,10 @@
  */
 package managedbean;
 
+import Helper.EntityHelper;
 import Helper.SessionHelper;
+import Helper.WordHelper;
+import entities.Users;
 import entities.Word;
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.Part;
@@ -28,6 +32,9 @@ import services.session.WordManager;
 @ViewScoped
 public class WordManagedBean implements Serializable {
 
+    
+    private String themeTitle;
+    private String themeDescription;
     private List<Word> selectedWords;
     private List<Word> listword;
     private Part fileuploaded;
@@ -322,9 +329,19 @@ public class WordManagedBean implements Serializable {
     }
     
     public void submit(){
+        //insert new theme
+        
+        entities.List list = new entities.List(listManager.getMaxIndexList(),this.themeTitle, this.themeDescription,new Users(1L), new Date(), new Date());
+        listManager.update(list);
+
+        //add theme to each word
+        
         selectedWords.forEach((selectedWord) -> {
-            System.out.println("Word>>"+selectedWord.getFrench());
+            Word updatedWord = WordHelper.addToList(selectedWord, list.getIdlist());
+            wordmanager.update(updatedWord);
         });
+        
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "allthemes.xhtml");
     }
 
     /**
@@ -339,5 +356,21 @@ public class WordManagedBean implements Serializable {
      */
     public void setSelectedThemeId(Long selectedThemeId) {
         this.selectedThemeId = selectedThemeId;
+    }
+
+    public String getThemeTitle() {
+        return themeTitle;
+    }
+
+    public void setThemeTitle(String themeTitle) {
+        this.themeTitle = themeTitle;
+    }
+
+    public String getThemeDescription() {
+        return themeDescription;
+    }
+
+    public void setThemeDescription(String themeDescription) {
+        this.themeDescription = themeDescription;
     }
 }

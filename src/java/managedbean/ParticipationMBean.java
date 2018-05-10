@@ -12,6 +12,7 @@ import entities.Testresult;
 import entities.Users;
 import entities.Word;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.model.ArrayDataModel;
@@ -19,6 +20,7 @@ import javax.faces.model.DataModel;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import services.session.HistoricManager;
+import services.session.TestManager;
 import services.session.WordManager;
 
 /**
@@ -32,6 +34,7 @@ public class ParticipationMBean implements Serializable{
     public ParticipationMBean() {
     }
     
+    private int size;
     private boolean showCorrection;
     private boolean isFR_EN;
     private int idtest;
@@ -45,19 +48,28 @@ public class ParticipationMBean implements Serializable{
     @EJB
     private HistoricManager historyManager;
     
+    @EJB
+    private TestManager testManager;
+    
     public void submit(){
-        int userScore = TestHelper.CalculateScore(userInput,Constants._FR, testHistoric);
+        Integer userScore = TestHelper.CalculateScore(userInput,Constants._FR, testHistoric,size-1);
         System.out.println("score "+userScore);
         
         this.setScore(userScore);
-        /*Testresult testresult = new Testresult();
+        long l = testManager.getMaxIndexTestResult();
+        System.out.print("L value >>>"+l);
+        Testresult testresult = new Testresult(l);
         testresult.setIdtest(new Test(new Integer(idtest).longValue()));
         testresult.setIduser(new Users(1l));
-        historyManager.addUserTestResult(testresult);*/
+        testresult.setScore(new Short(userScore.toString()));
+        testresult.setCreationdate(new Date());
+        testresult.setModificationdate(new Date());
+        historyManager.addUserTestResult(testresult);
+        this.userInput = new String[size];
     }
     
     public void submit1(){
-        int userScore = TestHelper.CalculateScore(userInput,Constants._EN, testHistoric);
+        int userScore = TestHelper.CalculateScore(userInput,Constants._EN, testHistoric,size-1);
         System.out.println("score "+userScore);
         
         this.setScore(userScore);
@@ -95,6 +107,10 @@ public class ParticipationMBean implements Serializable{
         this.userInput = userInput;
     }
 
+    public String getFormattedString(){
+        return "Your score is : " + score+"/20";
+    }
+    
     public int getScore() {
         return score;
     }
@@ -109,7 +125,8 @@ public class ParticipationMBean implements Serializable{
         List<Word> wordList = wordManager.getWords(String.valueOf(idtest));
         Word[] array = wordList.toArray(new Word[wordList.size()]);
         this.testHistoric = new ArrayDataModel<>(array);
-        this.userInput = new String[wordList.size()];
+        this.size = wordList.size();
+        this.userInput = new String[this.size];
         this.isFR_EN = isFREN;
     }
 }

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Test.findByIduserAndIdTest", query = "SELECT t FROM Test t WHERE t.iduser = :iduser and t.idtest = :idtest")
     , @NamedQuery(name = "Test.findByIdlist", query = "SELECT t FROM Test t WHERE t.idlist = :idlist")
     , @NamedQuery(name = "Test.findByCreationdate", query = "SELECT t FROM Test t WHERE t.creationdate = :creationdate")
-    , @NamedQuery(name = "Test.findByModificationdate", query = "SELECT t FROM Test t WHERE t.modificationdate = :modificationdate")})
+    , @NamedQuery(name = "Test.findByModificationdate", query = "SELECT t FROM Test t WHERE t.modificationdate = :modificationdate")
+    , @NamedQuery(name = "Test.deleteAll", query = "DELETE FROM Test")
+})
 public class Test implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtest")
@@ -76,6 +78,14 @@ public class Test implements Serializable {
     public Test(Long idtest, Date creationdate) {
         this.idtest = idtest;
         this.creationdate = creationdate;
+    }
+    
+    public Test(Long idtest,Users iduser,List idlist,Date creationdate, Date modificationdate) {
+        this.idtest = idtest;
+        this.idlist =idlist;
+        this.iduser = iduser;
+        this.creationdate = creationdate;
+        this.modificationdate = modificationdate;
     }
 
     public Long getIdtest() {
